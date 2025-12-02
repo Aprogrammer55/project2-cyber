@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Introduction to Blue Team Cybersecurity</title>
+    <style>
+        :root {
+            --bg: #0d1a2b;
+            --card: #0a1624;
+            --accent: #4cc9ff;
+            --muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.04);
+            --radius: 14px;
+            --max: 1100px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(76, 201, 255, 0.08), transparent),
+                linear-gradient(180deg, #071426 0%, #081a2e 60%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.45;
+            padding: 32px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max);
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        header {
+            grid-column: 1/-1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), #9be8ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #081126;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        main {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+            padding: 22px;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+            min-height: 420px
+        }
+
+        .hero {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start
+        }
+
+        .hero .text {
+            flex: 1
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.08em
+        }
+
+        h2 {
+            margin: 6px 0 8px;
+            font-size: 24px
+        }
+
+        .btn {
+            background: var(--accent);
+            border: none;
+            color: #081126;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03)
+        }
+
+        .card h3 {
+            margin: 6px 0 4px;
+            font-size: 14px
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        aside {
+            position: sticky;
+            top: 28px
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6)
+        }
+
+        .toc {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .toc a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 8px;
+            display: block
+        }
+
+        .toc a:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: #fff
+        }
+
+        footer {
+            grid-column: 1/-1;
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center
+        }
+
+        .fade-in {
+            animation: fadeIn .7s ease both
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <div class="brand">
+                <div class="logo">BT</div>
+                <div>
+                    <h1>Blue Team — Intro</h1>
+                    <p class="lead">Understand defensive security and how to detect, prevent, and respond to attacks.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <small class="eyebrow">Defensive • Monitoring • Incident Response</small>
+            </div>
+        </header>
+
+        <main class="fade-in">
+
+            <section class="hero" id="overview">
+                <div class="text">
+                    <div class="eyebrow">What is Blue Teaming?</div>
+                    <h2>Protect systems, detect intrusions, and respond effectively</h2>
+                    <p class="lead">Blue teams defend organizations by monitoring activity, analyzing threats, blocking
+                        attacks, and handling incidents. This page gives a gentle intro and interactive elements to
+                        learn.</p>
+
+                    <div style="margin-top:12px" class="cta">
+                        <button class="btn" onclick="scrollToSection('levels')">Start learning</button>
+                        <button class="btn ghost" onclick="alert('Threat detection simulation coming soon!')">Detection
+                            mini-game</button>
+                    </div>
+
+                    <div class="grid-3" style="margin-top:18px">
+                        <div class="card">
+                            <h3>Monitoring</h3>
+                            <p>SIEM, logs, alerts, network visibility, threat intel.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Analysis</h3>
+                            <p>Investigate suspicious events and identify attack patterns.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Incident Response</h3>
+                            <p>Contain, eradicate, recover — and strengthen defenses.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width:280px">
+                    <div class="panel">
+                        <h4>Quick facts</h4>
+                        <p style="color:var(--muted)">Blue teams keep systems secure by continuously detecting,
+                            analyzing, and responding to threats.</p>
+                        <ul style="color:var(--muted);margin-top:10px;padding-left:16px">
+                            <li>Log analysis & SIEM engineering</li>
+                            <li>Threat hunting</li>
+                            <li>Incident Response lifecycle</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="levels" style="margin-top:18px">
+                <h3 style="margin:0 0 8px">Courses</h3>
+                <div class="card" style="padding:16px">
+                    <p class="lead" style="margin-bottom:10px">Explore learning paths designed to build your defensive
+                        security skills.</p>
+                    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:12px">
+                        <button class="btn" onclick="alert('Opening SIEM Essentials...')">Course 1: SIEM
+                            Essentials</button>
+                        <button class="btn" onclick="alert('Opening Threat Hunting Basics...')">Course 2: Threat Hunting
+                            Basics</button>
+                        <button class="btn" onclick="alert('Opening Incident Response Mastery...')">Course 3: Incident
+                            Response Mastery</button>
+                    </div>
+                </div>
+
+                <h3 style="margin:20px 0 8px">Best Resources</h3>
+                <div class="card" style="padding:16px">
+                    <ul style="color:var(--muted);margin:0;padding-left:16px;line-height:1.6">
+                        <li><strong>Blue Team Level Up</strong> — structured defender learning</li>
+                        <li><strong>TryHackMe Blue Team Path</strong></li>
+                        <li><strong>MITRE ATT&CK (Defense)</strong></li>
+                        <li><strong>Elastic Security / Splunk</strong></li>
+                        <li><strong>Wireshark, Sysmon, OSQuery</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+
+        <aside>
+            <div class="panel fade-in">
+                <h4>On this page</h4>
+                <nav>
+                    <ul class="toc">
+                        <li><a href="#overview" onclick="scrollToSection('overview');return false">Overview</a></li>
+                        <li><a href="#levels" onclick="scrollToSection('levels');return false">Learning Levels</a></li>
+                    </ul>
+                </nav>
+
+                <div style="margin-top:12px">
+                    <h4 style="margin-bottom:6px">Resources</h4>
+                    <p style="color:var(--muted);font-size:13px;margin:0">Use legitimate logs, detection labs, and
+                        training environments when practicing defensive skills.</p>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <small>Built for defensive learning — stay ethical, stay safe.</small>
+        </footer>
+    </div>
+
+    <script>
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+
+</html>

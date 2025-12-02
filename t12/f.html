@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cybersecurity — Homepage</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue-900: #0B3D91;
+      --blue-700: #1976D2;
+      --blue-400: #A6D2FF;
+      --accent: #FFD166;
+      --bg-grad-start: #f7fbff;
+      --bg-grad-end: #ffffff;
+      --muted: #6b7280;
+      --card-radius: 14px;
+      --container: 1180px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg-grad-start) 0%,var(--bg-grad-end) 40%);
+      color:var(--blue-900);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:36px 24px;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* card container simulating the white panel in image */
+    .site{
+      width:100%;
+      max-width:var(--container);
+      background: #ffffff;
+      border-radius:18px;
+      box-shadow: 0 10px 36px rgba(9,30,66,0.08);
+      overflow:hidden;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:24px 36px;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background: linear-gradient(135deg,var(--blue-700),var(--blue-400));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 6px 18px rgba(25,118,210,0.14);
+    }
+    .logo svg{width:28px;height:28px;fill:#fff}
+    .brand h1{margin:0;font-size:18px;font-weight:900;letter-spacing:0.2px;color:var(--blue-900)}
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+      align-items:center;
+      font-weight:600;
+      color:var(--blue-900);
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:var(--blue-900);
+      opacity:0.95;
+      transition:opacity .18s ease;
+    }
+    .nav-links a:hover{opacity:0.6}
+
+    .login-btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:2px solid var(--blue-900);
+      background:transparent;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    /* HERO */
+    .hero{
+      display:flex;
+      gap:40px;
+      align-items:center;
+      padding:40px 48px;
+    }
+    /* left illustration */
+    .hero-left{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px;
+    }
+    .illustration{
+      width:640px;
+      max-width:48vw;
+      height:auto;
+      display:block;
+    }
+
+    /* right text */
+    .hero-right{
+      flex:1;
+      padding:8px 12px;
+    }
+    .eyebrow{
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:8px;
+      letter-spacing:0.6px;
+    }
+    .headline{
+      font-size:56px;
+      margin:6px 0 14px;
+      font-weight:900;
+      color:var(--blue-900);
+      line-height:1.02;
+    }
+    .sub{
+      color:var(--muted);
+      max-width:520px;
+      font-size:18px;
+    }
+    .cta{
+      margin-top:28px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .btn-primary{
+      background:var(--blue-700);
+      color:#fff;
+      padding:14px 22px;
+      border-radius:12px;
+      border:none;
+      font-weight:800;
+      font-size:15px;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(25,118,210,0.14);
+    }
+    .btn-ghost{
+      background:transparent;
+      border:2px solid rgba(25,118,210,0.12);
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:800;
+      color:var(--blue-700);
+      cursor:pointer;
+    }
+
+    /* features row under hero */
+    .features{
+      display:flex;
+      gap:18px;
+      padding:28px 36px;
+      border-top:1px solid #f3f7fb;
+      align-items:stretch;
+      justify-content:space-between;
+    }
+    .feature{
+      flex:1;
+      text-align:center;
+      padding:18px;
+      border-radius:12px;
+      background: linear-gradient(180deg,#ffffff,#fbfdff);
+    }
+    .feature .num{
+      font-size:24px;
+      font-weight:900;
+      color:var(--blue-700);
+      margin-bottom:6px;
+    }
+    .feature .label{color:var(--muted);font-weight:700}
+
+    /* bottom content grid */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+      padding:28px 36px;
+    }
+    .card{
+      background:#fbfdff;
+      border-radius:12px;
+      padding:18px;
+      box-shadow:0 8px 22px rgba(11,61,145,0.03);
+    }
+    .card h3{margin:0 0 8px;font-size:18px;color:var(--blue-900)}
+    .course{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#f6fbff);border:1px solid #eef6ff;margin-bottom:10px}
+
+    /* footer */
+    .footer{
+      padding:20px 36px;
+      border-top:1px solid #eef6ff;
+      background:#fbfcff;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    /* rounded spacing similar to image bottom bar */
+    .bottom-nav{
+      margin-top:16px;
+      padding:18px;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border-top:1px solid #f3f7fb;
+      display:flex;
+      gap:48px;
+      justify-content:center;
+      align-items:center;
+      border-bottom-left-radius:18px;
+      border-bottom-right-radius:18px;
+    }
+    .bottom-nav a{
+      text-decoration:none;
+      color:var(--blue-900);
+      font-weight:700;
+      letter-spacing:0.6px;
+    }
+
+    /* responsive */
+    @media (max-width:1200px){
+      .headline{font-size:44px}
+      .illustration{width:520px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:820px){
+      .hero{flex-direction:column;gap:20px;padding:28px}
+      .headline{font-size:32px}
+      .nav-links{display:none}
+      .illustration{width:100%;max-width:620px}
+      .grid{grid-template-columns:1fr}
+      .hero-right{text-align:left}
+    }
+    @media (max-width:420px){
+      .headline{font-size:26px}
+      .brand h1{font-size:16px}
+      body{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="site" role="main" aria-label="Cybersecurity homepage">
+    <!-- NAV -->
+    <header class="navbar" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- shield icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2l7 3v5c0 5-3 9-7 11-4-2-7-6-7-11V5l7-3z"></path>
+          </svg>
+        </div>
+        <h1>CYBERSECURITY</h1>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div>
+        <button class="login-btn" aria-label="Login">Login</button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-label="Hero section">
+      <div class="hero-left" aria-hidden="true">
+        <!-- Illustration close to the image (SVG) -->
+        <svg class="illustration" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shield illustration">
+          <defs>
+            <linearGradient id="lg1" x1="0" x2="1">
+              <stop offset="0" stop-color="#1976D2" />
+              <stop offset="1" stop-color="#A6D2FF" />
+            </linearGradient>
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="18" stdDeviation="30" flood-color="#0b3d91" flood-opacity="0.06"/>
+            </filter>
+          </defs>
+
+          <rect x="0" y="0" width="1000" height="700" rx="22" fill="#fff"/>
+          <!-- left laptop -->
+          <g transform="translate(60,160)">
+            <rect x="0" y="160" rx="12" width="360" height="230" fill="#f6fbff" stroke="#eaf4ff"/>
+            <rect x="18" y="182" width="324" height="136" rx="8" fill="#e9f4ff"/>
+            <rect x="40" y="210" width="60" height="40" rx="6" fill="#1976D2"/>
+            <rect x="260" y="210" width="60" height="40" rx="6" fill="#1976D2"/>
+          </g>
+
+          <!-- shield center -->
+          <g transform="translate(300,40)">
+            <path d="M250 20 L370 80 Q410 110 370 160 L310 200 Q290 220 250 220 Q210 220 190 200 L130 160 Q90 110 130 80 Z"
+              fill="url(#lg1)" stroke="#0B3D91" stroke-width="8" filter="url(#shadow)" />
+            <circle cx="250" cy="120" r="20" fill="#0B3D91" />
+          </g>
+
+          <!-- right boxes -->
+          <g transform="translate(640,210)">
+            <rect x="0" y="0" rx="14" width="220" height="130" fill="#e9f4ff" stroke="#e6f3ff"/>
+            <rect x="10" y="18" rx="8" width="200" height="40" fill="#fff"/>
+            <rect x="30" y="26" rx="6" width="40" height="20" fill="#1976D2"/>
+          </g>
+
+          <!-- dotted connections -->
+          <g stroke="#1976D2" stroke-width="6" stroke-linecap="round" opacity="0.12" transform="translate(120,70)">
+            <path d="M0 260 Q120 200 260 200" stroke-dasharray="6 12" fill="none"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-right">
+        <div class="eyebrow">Platform — Training & Consulting</div>
+        <h2 class="headline">PROTECT YOUR DATA. SECURE YOUR DIGITAL FUTURE.</h2>
+        <p class="sub">Hands-on courses, practical tools, and dedicated consulting to strengthen your cybersecurity posture. Courses, roadmaps, and verified achievements to help teams and individuals defend against threats.</p>
+
+        <div class="cta">
+          <button class="btn-primary" aria-label="Learn more">LEARN MORE</button>
+          <button class="btn-ghost" aria-label="Contact us">CONTACT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- features -->
+    <section class="features" aria-label="Key numbers">
+      <div class="feature">
+        <div class="num">1,240+</div>
+        <div class="label">Graduates</div>
+      </div>
+      <div class="feature">
+        <div class="num">320+</div>
+        <div class="label">Secured Projects</div>
+      </div>
+      <div class="feature">
+        <div class="num">4.9/5</div>
+        <div class="label">Avg. Rating</div>
+      </div>
+    </section>
+
+    <!-- grid: about, courses, achievements, contact -->
+    <section class="grid" aria-label="More sections">
+      <div class="card" id="about">
+        <h3>About</h3>
+        <p style="color:var(--muted)">We are a specialized team offering practical cybersecurity training and consulting. Real projects, real defense — tailored to companies and professionals.</p>
+      </div>
+
+      <div class="card" id="services">
+        <h3>Featured Courses</h3>
+        <div class="course"><div>Intro to Cybersecurity</div><div style="color:var(--muted)">6 weeks</div></div>
+        <div class="course"><div>Penetration Testing</div><div style="color:var(--muted)">8 weeks</div></div>
+        <div class="course"><div>Incident Response</div><div style="color:var(--muted)">5 weeks</div></div>
+      </div>
+
+      <div class="card" id="achievements">
+        <h3>Achievements</h3>
+        <ul style="padding-left:18px;color:var(--muted);margin:8px 0 0">
+          <li>Secured infrastructures for local companies</li>
+          <li>Delivered workshops to IT teams</li>
+          <li>Consulted for governmental & private orgs</li>
+        </ul>
+      </div>
+
+      <div class="card" id="contact">
+        <h3>Contact</h3>
+        <p style="color:var(--muted)">For inquiries or training requests, send us a message.</p>
+        <form onsubmit="return false" style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          <input placeholder="Your name" aria-label="Name" style="padding:10px;border-radius:8px;border:1px solid #eef6ff" />
+          <input placeholder="Email" aria-label="Email" style="padding:10px;border-radius:8px;border:1px solid #eef6ff" />
+          <textarea placeholder="Message" aria-label="Message" rows="3" style="padding:10px;border-radius:8px;border:1px solid #eef6ff"></textarea>
+          <button class="btn-primary" style="width:max-content">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- bottom nav bar like in image -->
+    <div class="bottom-nav" aria-hidden="true">
+      <a href="#login">LOGIN</a>
+      <a href="#roadmap">ROADMAP</a>
+      <a href="#achievements">ACHIEVEMENTS</a>
+      <a href="#about">ABOUT</a>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <div>© 2025 Cybersecurity. All rights reserved.</div>
+      <div style="color:var(--muted)">Quick links: <a href="#about" style="color:var(--blue-700);text-decoration:none;margin-left:10px">About</a></div>
+    </footer>
+  </div>
+</body>
+</html>

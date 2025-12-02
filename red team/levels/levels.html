@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Red Team – Levels</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #ff6b6b;
+            --muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 14px;
+            font-family: Inter, ui-sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #081426, #060b17);
+            padding: 24px;
+            color: #e6eef8;
+            display: flex;
+            justify-content: center;
+        }
+
+        .levels-wrapper {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+        }
+
+        .level-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .level-card {
+            background: var(--glass);
+            padding: 16px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .locked {
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .btn {
+            background: var(--accent);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #081126;
+        }
+
+        .locked-badge {
+            background: #333;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="levels-wrapper">
+        <h1>Red Team — Levels</h1>
+        <p class="lead">Unlock each level by completing the previous one.</p>
+
+        <div class="level-list">
+
+            <!-- LEVEL 1 (UNLOCKED) -->
+            <div class="level-card">
+                <div>
+                    <h3 style="margin:0">Level 1 — Recon Basics</h3>
+                    <small style="color:var(--muted)">Identify exposed information from public sources</small>
+                </div>
+                <button class="btn" onclick="openLevel(1)">Play</button>
+            </div>
+
+            <!-- LEVEL 2 (LOCKED UNTIL L1 COMPLETE) -->
+            <div class="level-card locked" id="lvl2">
+                <div>
+                    <h3 style="margin:0">Level 2 — Initial Access</h3>
+                    <small style="color:var(--muted)">Gain a foothold in a controlled environment</small>
+                </div>
+                <div class="locked-badge">Locked</div>
+            </div>
+
+            <!-- LEVEL 3 (LOCKED UNTIL L2 COMPLETE) -->
+            <div class="level-card locked" id="lvl3">
+                <div>
+                    <h3 style="margin:0">Level 3 — Post-Exploitation</h3>
+                    <small style="color:var(--muted)">Move laterally & gather intel</small>
+                </div>
+                <div class="locked-badge">Locked</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Load progress
+        let progress = JSON.parse(localStorage.getItem('rt_progress') || '{}');
+
+        // Unlock logic
+        function applyLocks() {
+            if (progress.level1 === true) {
+                document.getElementById('lvl2').classList.remove('locked');
+            }
+            if (progress.level2 === true) {
+                document.getElementById('lvl3').classList.remove('locked');
+            }
+        }
+
+        function openLevel(num) {
+            window.location.href = `level${num}.html`;
+        }
+
+        applyLocks();
+    </script>
+</body>
+
+</html>

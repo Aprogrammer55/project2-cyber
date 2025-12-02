@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>درعك الرقمي — أمن سيبراني</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-900: #0B3D91;
+      --blue-500: #1976D2;
+      --blue-300: #A6D2FF;
+      --accent: #FFD166;
+      --bg: #ffffff;
+      --muted: #6b7280;
+      --radius: 12px;
+      --container: 1200px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Tajawal', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, #f7fbff 0%, #ffffff 40%);
+      color: var(--blue-900);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+      padding: 40px 20px;
+    }
+
+    /* Container */
+    .site-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(9, 30, 66, 0.08);
+      overflow: hidden
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-300));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.18)
+    }
+
+    .logo svg {
+      width: 26px;
+      height: 26px;
+      fill: #fff
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center
+    }
+
+    .nav-links a {
+      color: var(--blue-900);
+      text-decoration: none;
+      font-weight: 500
+    }
+
+    .btn-login {
+      background: transparent;
+      border: 2px solid var(--blue-900);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      gap: 40px;
+      padding: 48px 32px;
+      align-items: center
+    }
+
+    .hero-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px
+    }
+
+    .hero-illustration {
+      width: 520px;
+      max-width: 48vw
+    }
+
+    .hero-right {
+      flex: 1;
+      padding: 10px
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8px
+    }
+
+    .headline {
+      font-size: 44px;
+      margin: 6px 0 16px;
+      font-weight: 900;
+      color: var(--blue-900)
+    }
+
+    .sub {
+      color: var(--muted);
+      max-width: 520px
+    }
+
+    .cta-row {
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    .btn-primary {
+      background: var(--blue-500);
+      border: none;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(25, 118, 210, 0.18)
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--blue-500);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    /* Features / Stats */
+    .features {
+      display: flex;
+      gap: 18px;
+      padding: 30px 40px;
+      border-top: 1px solid #f2f6fb
+    }
+
+    .feature {
+      flex: 1;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center
+    }
+
+    .feature h3 {
+      margin: 0;
+      color: var(--blue-900);
+      font-size: 20px
+    }
+
+    .stat {
+      font-size: 28px;
+      font-weight: 900;
+      margin: 6px 0;
+      color: var(--blue-500)
+    }
+
+    /* About + Courses */
+    .sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      padding: 36px
+    }
+
+    .card {
+      background: #fbfdff;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 6px 18px rgba(11, 61, 145, 0.04)
+    }
+
+    .course-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .course {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #ffffff, #f6fbff);
+      border: 1px solid #eef6ff
+    }
+
+    /* Footer */
+    .footer {
+      padding: 22px 36px;
+      background: #fbfcff;
+      border-top: 1px solid #eef6ff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    /* Responsive */
+    @media (max-width:980px) {
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px
+      }
+
+      .hero-illustration {
+        max-width: 100%;
+        width: 100%
+      }
+
+      .sections {
+        grid-template-columns: 1fr
+      }
+
+      .nav-links {
+        display: none
+      }
+    }
+
+    @media (max-width:520px) {
+      .headline {
+        font-size: 28px
+      }
+
+      .brand h1 {
+        font-size: 16px
+      }
+
+      body {
+        padding: 18px
+      }
+    }
+
+    #image {
+      height: 70%;
+      width: 35%;
+      position: absolute;
+      right: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-wrap" role="main">
+    <header class="navbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Shield icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l7 3v5c0 5-3 9-7 11-4-2-7-6-7-11V5l7-3z" />
+          </svg>
+        </div>
+        <div>
+          <h1>درعك الرقمي</h1>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="روابط الموقع">
+        <a href="#about">لمحة عن الموقع</a>
+        <a href="#courses">دورات</a>
+        <a href="#achievements">إنجازات</a>
+        <a href="#contact">تواصل</a>
+      </nav>
+
+      <div>
+        <button class="btn-login" id="loginBtn">تسجيل دخول</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <!-- Illustration: shield + devices (inline SVG) -->
+        <svg class="hero-illustration" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="شكل درع وحماية">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#1976D2" stop-opacity="1" />
+              <stop offset="1" stop-color="#A6D2FF" stop-opacity="1" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="800" height="600" rx="18" fill="#ffffff" />
+          <g transform="translate(60,40)">
+            <g transform="translate(0,40)">
+              <rect x="10" y="220" width="300" height="170" rx="10" fill="#f6fbff" stroke="#e6f3ff" />
+              <rect x="340" y="220" width="240" height="170" rx="10" fill="#f6fbff" stroke="#e6f3ff" />
+            </g>
+            <g transform="translate(120,0)">
+              <path
+                d="M200 20 L320 80 Q360 110 320 160 L260 200 Q240 220 200 220 Q160 220 140 200 L80 160 Q40 110 80 80 Z"
+                fill="url(#g1)" stroke="#0B3D91" stroke-width="6" />
+              <circle cx="210" cy="120" r="18" fill="#0B3D91" />
+            </g>
+            <g transform="translate(30,280)">
+              <rect x="0" y="0" width="140" height="90" rx="8" fill="#e9f4ff" />
+              <rect x="160" y="0" width="320" height="90" rx="8" fill="#e9f4ff" />
+            </g>
+            <img src="f7b21f57-00ed-42a1-ab88-67b293685f5f.png" alt="" id="image">
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-right">
+        <div class="eyebrow">منصة التدريب والاستشارات</div>
+        <h2 class="headline">حماية بياناتك. تأمين مستقبلك الرقمي.</h2>
+        <p class="sub">دورات تطبيقية، أدوات عملية واستشارات مخصّصة لمساعدة الشركات والأفراد على تقوية دفاعاتهم
+          السيبرانية وحماية خصوصيتهم.</p>
+        <div class="cta-row">
+          <button class="btn-primary" onclick="location.href='#courses'">ابدأ الآن</button>
+          <button class="btn-secondary" onclick="location.href='#contact'">تواصل معنا</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="أرقام وانجازات">
+      <div class="feature">
+        <div class="stat">1,240+</div>
+        <h3>خريج</h3>
+      </div>
+      <div class="feature">
+        <div class="stat">320+</div>
+        <h3>مشروع مؤمن</h3>
+      </div>
+      <div class="feature">
+        <div class="stat">4.9/5</div>
+        <h3>متوسط التقييم</h3>
+      </div>
+    </section>
+
+    <section class="sections">
+      <div class="card" id="about">
+        <h3>من نحن</h3>
+        <p>نحن فريق متخصص في التدريب والاستشارات بالأمن السيبراني. نوفّر محتوى عملي ومشاريع حقيقية لتقوية مهاراتك وتحسين
+          وضع منظوماتك الأمنية.</p>
+      </div>
+
+      <div class="card" id="courses">
+        <h3>الدورات المميّزة</h3>
+        <div class="course-grid">
+          <div class="course">
+            <div>مقدمة في الأمن السيبراني</div>
+            <div>6 أسابيع</div>
+          </div>
+          <div class="course">
+            <div>اختبار الاختراق (Pentesting)</div>
+            <div>8 أسابيع</div>
+          </div>
+          <div class="course">
+            <div>تحليل الحوادث والاستجابة</div>
+            <div>5 أسابيع</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;text-align:left"><a href="#"
+            style="text-decoration:none;color:var(--blue-500);font-weight:700">جميع الدورات →</a></div>
+      </div>
+
+      <div class="card" id="achievements">
+        <h3>إنجازات مختصرة</h3>
+        <ul style="padding-left:18px;color:var(--muted)">
+          <li>تأمين بنيات تحتية لشركات محلية.</li>
+          <li>ورش عمل لفرق تقنية المعلومات.</li>
+          <li>تقديم استشارات لعدد من المنظمات الحكومية والخاصة.</li>
+        </ul>
+      </div>
+
+      <div class="card" id="contact">
+        <h3>تواصل</h3>
+        <p>للاستفسار أو طلب عرض تدريبي املأ النموذج أو راسلنا على البريد.</p>
+        <form onsubmit="event.preventDefault();alert('تم إرسال طلبك — سنعود إليك قريباً!')">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <input placeholder="اسمك" required style="padding:10px;border-radius:8px;border:1px solid #e9f4ff" />
+            <input type="email" placeholder="بريدك الإلكتروني" required
+              style="padding:10px;border-radius:8px;border:1px solid #e9f4ff" />
+            <textarea placeholder="رسالتك" rows="4"
+              style="padding:10px;border-radius:8px;border:1px solid #e9f4ff"></textarea>
+            <button class="btn-primary" style="align-self:flex-start">أرسل</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© 2025 درعك الرقمي. كل الحقوق محفوظة.</div>
+      <div style="color:var(--muted);font-weight:600">روابط سريعة: <a href="#about"
+          style="color:var(--blue-500);text-decoration:none;margin-inline-start:10px">عنّا</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple accessibility and small interaction: sticky navbar on scroll
+    (function () {
+      const nav = document.querySelector('.navbar');
+      const site = document.querySelector('.site-wrap');
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const sc = window.scrollY;
+        if (sc > 24) { nav.style.backdropFilter = 'saturate(120%) blur(6px)'; nav.style.background = 'rgba(255,255,255,0.75)'; nav.style.boxShadow = '0 6px 18px rgba(9,30,66,0.04)' } else { nav.style.backdropFilter = 'none'; nav.style.background = 'transparent'; nav.style.boxShadow = 'none' }
+        lastScroll = sc;
+      });
+
+      // Login button demo (opens a simple prompt)
+      document.getElementById('loginBtn').addEventListener('click', function () {
+        const email = prompt('ادخل بريدك الإلكتروني لتسجيل الدخول');
+        if (email) alert('تم استقبال بريدك: ' + email);
+      });
+    })();
+  </script>
+</body>
+
+</html>

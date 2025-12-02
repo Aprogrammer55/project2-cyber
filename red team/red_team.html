@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Introduction to Red Team Cybersecurity</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #ff6b6b;
+            --muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 14px;
+            --max: 1100px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(255, 107, 107, 0.06), transparent),
+                linear-gradient(180deg, #071126 0%, #081426 60%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.45;
+            padding: 32px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max);
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        header {
+            grid-column: 1/-1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), #ffb86b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #081126
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        /* left column */
+        main {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            padding: 22px;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+            min-height: 420px
+        }
+
+        .hero {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start
+        }
+
+        .hero .text {
+            flex: 1
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.08em
+        }
+
+        h2 {
+            margin: 6px 0 8px;
+            font-size: 24px
+        }
+
+        .cta {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .btn {
+            background: var(--accent);
+            border: none;
+            color: #081126;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03)
+        }
+
+        .card h3 {
+            margin: 6px 0 4px;
+            font-size: 14px
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        /* right column */
+        aside {
+            position: sticky;
+            top: 28px
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6)
+        }
+
+        .panel h4 {
+            margin: 0 0 8px
+        }
+
+        .toc {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .toc a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 8px;
+            display: block
+        }
+
+        .toc a:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: #fff
+        }
+
+        /* quiz */
+        .quiz {
+            margin-top: 16px
+        }
+
+        .question {
+            margin-bottom: 12px
+        }
+
+        .answers button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: transparent;
+            margin-bottom: 8px;
+            cursor: pointer
+        }
+
+        .answers button.correct {
+            outline: 2px solid rgba(46, 204, 113, 0.16)
+        }
+
+        .answers button.wrong {
+            outline: 2px solid rgba(255, 99, 71, 0.12)
+        }
+
+        footer {
+            grid-column: 1/-1;
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center
+        }
+
+        /* responsive */
+        @media (max-width:980px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: static
+            }
+        }
+
+        /* subtle animations */
+        .fade-in {
+            animation: fadeIn .7s ease both
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        /* small recon-grid */
+        .recon-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            margin-top: 14px
+        }
+
+        .host {
+            padding: 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            border: 1px dashed rgba(255, 255, 255, 0.02)
+        }
+
+        .host.found {
+            background: linear-gradient(90deg, #1e3a8a55, #064e3b55);
+            border-style: solid
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo">RT</div>
+                <div>
+                    <h1>Red Team — Intro</h1>
+                    <p class="lead">A bite-sized, hands-on introduction to offensive security concepts.</p>
+                </div>
+            </div>
+            <div>
+                <small class="eyebrow">Hands-on • Safe • Learning first</small>
+            </div>
+        </header>
+
+        <main class="fade-in">
+            <section class="hero" id="overview">
+                <div class="text">
+                    <div class="eyebrow">What is Red Teaming?</div>
+                    <h2>Simulate attackers to improve real-world defenses</h2>
+                    <p class="lead">Red teams use offensive techniques (recon, exploitation, lateral movement,
+                        persistence) to test how well an organization detects and responds to sophisticated attacks.
+                        This site gives you the basics and safe exercises to practice.</p>
+
+                    <div style="margin-top:12px" class="cta">
+                        <button class="btn" onclick="scrollToSection('levels')">Start learning</button>
+                        <button class="btn ghost" onclick="startReconMiniGame()">Play recon mini-game</button>
+                    </div>
+
+                    <div class="grid-3" style="margin-top:18px">
+                        <div class="card">
+                            <h3>Recon</h3>
+                            <p>Discover targets and gather public info — the first step in every engagement.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Exploitation</h3>
+                            <p>Use weaknesses to gain access (always in lab or authorized scope).</p>
+                        </div>
+                        <div class="card">
+                            <h3>Post-Exploitation</h3>
+                            <p>Move laterally, maintain access, and collect evidence for defenders to fix issues.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:280px">
+                    <div class="panel">
+                        <h4>Quick facts</h4>
+                        <p style="color:var(--muted)">Red teams help blue teams (defenders) by revealing gaps. They
+                            operate ethically — with permission and clear rules.</p>
+                        <ul style="color:var(--muted);margin-top:10px;padding-left:16px">
+                            <li>Scope &amp; Rules of Engagement</li>
+                            <li>Safe labs (tryHackMe, Hack The Box)</li>
+                            <li>Reporting and remediation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="levels" style="margin-top:18px">
+                <h3 style="margin:0 0 8px">Courses</h3>
+                <div class="card" style="padding:16px">
+                    <p class="lead" style="margin-bottom:10px">Browse structured courses designed to take you from
+                        beginner to red team operator.</p>
+                    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:12px">
+                        <button class="btn" onclick="alert('Opening Recon Foundations...')">Course 1: Recon
+                            Foundations</button>
+                        <button class="btn" onclick="alert('Opening Initial Access Tactics...')">Course 2: Initial
+                            Access Tactics</button>
+                        <button class="btn" onclick="alert('Opening Post-Exploitation Mastery...')">Course 3:
+                            Post-Exploitation Mastery</button>
+                    </div>
+                </div>
+
+                <h3 style="margin:20px 0 8px">Best Resources</h3>
+                <div class="card" style="padding:16px">
+                    <ul style="color:var(--muted);margin:0;padding-left:16px;line-height:1.6">
+                        <li><strong>TryHackMe Red Team Path</strong> — beginner friendly labs</li>
+                        <li><strong>Hack The Box</strong> — advanced realistic machines</li>
+                        <li><strong>Red Team Field Manual (RTFM)</strong></li>
+                        <li><strong>MITRE ATT&CK</strong> — framework for real attacker techniques</li>
+                        <li><strong>Nmap, Burp Suite, BloodHound</strong> — essential tools</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+
+        <aside>
+            <div class="panel fade-in">
+                <h4>On this page</h4>
+                <nav>
+                    <ul class="toc">
+                        <li><a href="#overview" onclick="scrollToSection('overview');return false">Overview</a></li>
+                        <li><a href="#levels" onclick="scrollToSection('levels');return false">Learning Levels</a></li>
+                        <li><a href="#quiz" onclick="scrollToSection('quiz');return false">Quiz</a></li>
+                    </ul>
+                </nav>
+
+                <div style="margin-top:12px">
+                    <h4 style="margin-bottom:6px">Resources</h4>
+                    <p style="color:var(--muted);font-size:13px;margin:0">Use authorized labs only. Try platforms like
+                        TryHackMe or Hack The Box to practice legally.</p>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <small>Built for learning — always stay within legal boundaries. This is an educational resource
+                only.</small>
+        </footer>
+    </div>
+
+    <script>
+        /* Utility: smooth scroll to a section id */
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /* ----------------------
+           Recon mini-game
+           - Grid of clickable hosts
+           - Some hosts are "live" (target) and must be found
+           - Safe, non-destructive simulation
+           ---------------------- */
+        const reconGridEl = document.getElementById('recon');
+        let hostCount = 18; // total grid cells (6x3)
+        let cols = 6;
+        let rows = 3;
+        let hiddenTargets = new Set();
+        let found = new Set();
+
+        function createReconGrid() {
+            reconGridEl.innerHTML = '';
+            for (let i = 0; i < hostCount; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'host';
+                btn.type = 'button';
+                btn.setAttribute('data-id', i);
+                btn.setAttribute('aria-pressed', 'false');
+                btn.textContent = 'Host ' + (i + 1);
+                btn.addEventListener('click', onHostClick);
+                reconGridEl.appendChild(btn);
+            }
+            placeTargets();
+        }
+
+        function placeTargets() {
+            hiddenTargets.clear(); found.clear();
+            // pick random 4 targets
+            while (hiddenTargets.size < 4) {
+                hiddenTargets.add(Math.floor(Math.random() * hostCount));
+            }
+            // clear visuals
+            document.querySelectorAll('.host').forEach(h => { h.classList.remove('found'); h.disabled = false; h.setAttribute('aria-pressed', 'false'); });
+        }
+
+        function onHostClick(e) {
+            const id = Number(e.currentTarget.dataset.id);
+            if (found.has(id)) return;
+            if (hiddenTargets.has(id)) {
+                found.add(id);
+                e.currentTarget.classList.add('found');
+                e.currentTarget.setAttribute('aria-pressed', 'true');
+                e.currentTarget.textContent = 'Target found';
+            } else {
+                // a small hint mechanic: mark as scanned
+                e.currentTarget.disabled = true;
+                e.currentTarget.textContent = 'scanned';
+            }
+            checkReconWin();
+        }
+
+        function checkReconWin() {
+            if (found.size === hiddenTargets.size) {
+                setTimeout(() => alert('Nice work — you found all targets! Review what info each target might expose (open ports, services, public configs).'), 120);
+            }
+        }
+
+        function startReconMiniGame() {
+            createReconGrid();
+            // focus first host for accessibility
+            const first = document.querySelector('.host'); if (first) first.focus();
+        }
+
+        // Initialize grid on load
+        startReconMiniGame();
+
+        /* ----------------------
+           Quiz: simple multiple choice
+           ---------------------- */
+        const quizData = [
+            {
+                q: 'What is the primary purpose of reconnaissance (recon)?',
+                options: ['Exploit a server immediately', 'Gather information to identify potential attack paths', 'Destroy evidence', 'Install malware remotely'],
+                answer: 1
+            },
+            {
+                q: 'Which practice is legal and ethical?',
+                options: ['Scanning random internet ranges without permission', 'Phishing real users at work', 'Using authorized lab environments', 'Deploying ransomware to test backups'],
+                answer: 2
+            },
+            {
+                q: 'Red team engagements should always include:',
+                options: ['No scope, unlimited access', 'A written Rules of Engagement and authorization', 'Only social engineering', 'Public disclosure with no remediation'],
+                answer: 1
+            }
+        ];
+
+        function renderQuiz() {
+            const quizEl = document.getElementById('quiz');
+            quizEl.innerHTML = '';
+            quizData.forEach((item, idx) => {
+                const qWrap = document.createElement('div'); qWrap.className = 'question';
+                const qTitle = document.createElement('div'); qTitle.innerHTML = `<strong>Q${idx + 1}.</strong> ${item.q}`;
+                const answers = document.createElement('div'); answers.className = 'answers';
+                item.options.forEach((opt, i) => {
+                    const b = document.createElement('button'); b.type = 'button'; b.innerText = opt;
+                    b.addEventListener('click', () => selectAnswer(b, i, item.answer, answers));
+                    answers.appendChild(b);
+                });
+                qWrap.appendChild(qTitle); qWrap.appendChild(answers);
+                quizEl.appendChild(qWrap);
+            });
+            const submit = document.createElement('button'); submit.className = 'btn'; submit.innerText = 'Show score'; submit.style.marginTop = '8px';
+            submit.addEventListener('click', showScore);
+            quizEl.appendChild(submit);
+        }
+
+        function selectAnswer(button, index, correctIndex, answersContainer) {
+            // mark chosen
+            answersContainer.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+            button.classList.add('selected');
+            // show correct/wrong immediately
+            answersContainer.querySelectorAll('button').forEach((b, i) => {
+                b.classList.remove('correct', 'wrong');
+                if (i === correctIndex) b.classList.add('correct');
+                if (b.classList.contains('selected') && i !== correctIndex) b.classList.add('wrong');
+            });
+        }
+
+        function showScore() {
+            const answers = Array.from(document.querySelectorAll('.question .answers'));
+            let score = 0; let total = answers.length;
+            answers.forEach((ansWrap, idx) => {
+                const chosen = ansWrap.querySelector('button.selected');
+                const correctBtn = ansWrap.querySelector('button.correct');
+                const correctIndex = Array.from(ansWrap.children).indexOf(correctBtn);
+                const chosenIndex = chosen ? Array.from(ansWrap.children).indexOf(chosen) : -1;
+                if (chosenIndex === correctIndex) score++;
+            });
+            alert('Your score: ' + score + ' / ' + total + '\nTip: always practice in authorized labs and document your findings.');
+        }
+
+        renderQuiz();
+
+        /* Accessibility: keyboard support for recon hosts */
+        document.addEventListener('keydown', (e) => {
+            const active = document.activeElement;
+            if (active && active.classList && active.classList.contains('host')) {
+                if (e.key === 'Enter' || e.key === ' ') { active.click(); e.preventDefault(); }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
