@@ -1,12 +1,14 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>درعك الرقمي — أمن سيبراني</title>
+  <title>Your Digital Shield — Cybersecurity Hub</title>
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --blue-900: #0B3D91;
@@ -20,47 +22,39 @@
     }
 
     * {
-      box-sizing: border-box
-    }
-
-    html,
-    body {
-      height: 100%;
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: 'Tajawal', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-family: 'Tajawal', sans-serif;
       background: linear-gradient(180deg, #f7fbff 0%, #ffffff 40%);
       color: var(--blue-900);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       line-height: 1.5;
       padding: 40px 20px;
     }
 
-    /* Container */
     .site-wrap {
       max-width: var(--container);
       margin: 0 auto;
       background: var(--bg);
       border-radius: 20px;
       box-shadow: 0 8px 30px rgba(9, 30, 66, 0.08);
-      overflow: hidden
+      overflow: hidden;
     }
 
-    /* Navbar */
+    /* NAVBAR */
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 32px
+      padding: 20px 32px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px
+      gap: 12px;
     }
 
     .logo {
@@ -68,51 +62,41 @@
       height: 46px;
       border-radius: 10px;
       background: linear-gradient(135deg, var(--blue-500), var(--blue-300));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.18)
-    }
-
-    .logo svg {
-      width: 26px;
-      height: 26px;
-      fill: #fff
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.18);
     }
 
     .brand h1 {
-      margin: 0;
       font-size: 18px;
-      font-weight: 800
+      font-weight: 800;
+      margin: 0;
     }
 
     .nav-links {
       display: flex;
       gap: 24px;
-      align-items: center
     }
 
     .nav-links a {
-      color: var(--blue-900);
       text-decoration: none;
-      font-weight: 500
+      color: var(--blue-900);
+      font-weight: 600;
     }
 
     .btn-login {
-      background: transparent;
       border: 2px solid var(--blue-900);
       padding: 8px 14px;
       border-radius: 10px;
+      background: transparent;
       font-weight: 700;
-      cursor: pointer
+      cursor: pointer;
     }
 
-    /* Hero */
+    /* HERO */
     .hero {
       display: flex;
       gap: 40px;
       padding: 48px 32px;
-      align-items: center
+      align-items: center;
     }
 
     .hero-left {
@@ -120,342 +104,308 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px
     }
 
-    .hero-illustration {
-      width: 520px;
-      max-width: 48vw
+    /* GLOWING FLOATING IMAGE */
+    .hero-image {
+      width: 420px;
+      max-width: 100%;
+      animation: float 4s ease-in-out infinite;
     }
 
+    .hero-image img {
+      width: 100%;
+      border-radius: 22px;
+      box-shadow:
+        0 0 20px rgba(25, 118, 210, 0.5),
+        0 0 60px rgba(25, 118, 210, 0.25),
+        0 0 90px rgba(25, 118, 210, 0.15);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow:
+          0 0 15px rgba(25, 118, 210, 0.5),
+          0 0 40px rgba(25, 118, 210, 0.25);
+      }
+
+      50% {
+        box-shadow:
+          0 0 30px rgba(25, 118, 210, 0.9),
+          0 0 70px rgba(25, 118, 210, 0.5);
+      }
+
+      100% {
+        box-shadow:
+          0 0 15px rgba(25, 118, 210, 0.5),
+          0 0 40px rgba(25, 118, 210, 0.25);
+      }
+    }
+
+    /* RIGHT TEXT */
     .hero-right {
       flex: 1;
-      padding: 10px
     }
 
     .eyebrow {
       color: var(--muted);
       font-weight: 600;
-      margin-bottom: 8px
     }
 
     .headline {
       font-size: 44px;
-      margin: 6px 0 16px;
       font-weight: 900;
-      color: var(--blue-900)
+      margin: 10px 0;
     }
 
     .sub {
       color: var(--muted);
-      max-width: 520px
+      max-width: 520px;
     }
 
     .cta-row {
       margin-top: 24px;
       display: flex;
-      gap: 14px;
-      align-items: center
+      gap: 12px;
     }
 
     .btn-primary {
-      background: var(--blue-500);
-      border: none;
-      color: #fff;
       padding: 12px 20px;
       border-radius: 10px;
+      background: var(--blue-500);
+      border: none;
+      color: white;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(25, 118, 210, 0.18)
     }
 
     .btn-secondary {
+      padding: 12px 20px;
+      border-radius: 10px;
       background: transparent;
       border: 2px solid var(--blue-500);
-      padding: 10px 16px;
-      border-radius: 10px;
+      color: var(--blue-500);
       font-weight: 700;
-      cursor: pointer
+      cursor: pointer;
     }
 
-    /* Features / Stats */
+    /* QUICK BUTTONS */
+    .quick-sections {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .quick-btn {
+      padding: 10px 18px;
+      background: #fbfdff;
+      border: 2px solid var(--blue-300);
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .quick-btn:hover {
+      background: var(--blue-500);
+      color: white;
+      border-color: var(--blue-500);
+    }
+
+    /* FEATURES */
     .features {
       display: flex;
       gap: 18px;
       padding: 30px 40px;
-      border-top: 1px solid #f2f6fb
+      border-top: 1px solid #f2f6fb;
     }
 
     .feature {
       flex: 1;
-      padding: 18px;
-      border-radius: 12px;
-      text-align: center
-    }
-
-    .feature h3 {
-      margin: 0;
-      color: var(--blue-900);
-      font-size: 20px
+      text-align: center;
     }
 
     .stat {
       font-size: 28px;
       font-weight: 900;
-      margin: 6px 0;
-      color: var(--blue-500)
+      color: var(--blue-500);
     }
 
-    /* About + Courses */
+    /* SECTIONS GRID */
     .sections {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
-      padding: 36px
+      padding: 36px;
     }
 
     .card {
       background: #fbfdff;
       border-radius: 14px;
       padding: 22px;
-      box-shadow: 0 6px 18px rgba(11, 61, 145, 0.04)
+      box-shadow: 0 6px 18px rgba(11, 61, 145, 0.04);
     }
 
-    .course-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px
-    }
-
-    .course {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border-radius: 10px;
-      background: linear-gradient(180deg, #ffffff, #f6fbff);
-      border: 1px solid #eef6ff
-    }
-
-    /* Footer */
     .footer {
       padding: 22px 36px;
       background: #fbfcff;
       border-top: 1px solid #eef6ff;
       display: flex;
       justify-content: space-between;
-      align-items: center
+      align-items: center;
     }
 
-    /* Responsive */
-    @media (max-width:980px) {
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
       .hero {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 28px
-      }
-
-      .hero-illustration {
-        max-width: 100%;
-        width: 100%
-      }
-
-      .sections {
-        grid-template-columns: 1fr
       }
 
       .nav-links {
-        display: none
+        display: none;
       }
-    }
-
-    @media (max-width:520px) {
-      .headline {
-        font-size: 28px
-      }
-
-      .brand h1 {
-        font-size: 16px
-      }
-
-      body {
-        padding: 18px
-      }
-    }
-
-    #image {
-      height: 70%;
-      width: 35%;
-      position: absolute;
-      right: 100;
     }
   </style>
 </head>
 
 <body>
-  <div class="site-wrap" role="main">
+
+  <div class="site-wrap">
+
+    <!-- NAVBAR -->
     <header class="navbar">
       <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <!-- Shield icon -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2l7 3v5c0 5-3 9-7 11-4-2-7-6-7-11V5l7-3z" />
-          </svg>
-        </div>
-        <div>
-          <h1>درعك الرقمي</h1>
-        </div>
+        <div class="logo"></div>
+        <h1>Your Digital Shield</h1>
       </div>
 
-      <nav class="nav-links" aria-label="روابط الموقع">
-        <a href="#about">لمحة عن الموقع</a>
-        <a href="#courses">دورات</a>
-        <a href="#achievements">إنجازات</a>
-        <a href="#contact">تواصل</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
       </nav>
 
-      <div>
-        <button class="btn-login" id="loginBtn">تسجيل دخول</button>
-      </div>
+      <button class="btn-login" id="loginBtn">Login</button>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-left">
-        <!-- Illustration: shield + devices (inline SVG) -->
-        <svg class="hero-illustration" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img"
-          aria-label="شكل درع وحماية">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1">
-              <stop offset="0" stop-color="#1976D2" stop-opacity="1" />
-              <stop offset="1" stop-color="#A6D2FF" stop-opacity="1" />
-            </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="800" height="600" rx="18" fill="#ffffff" />
-          <g transform="translate(60,40)">
-            <g transform="translate(0,40)">
-              <rect x="10" y="220" width="300" height="170" rx="10" fill="#f6fbff" stroke="#e6f3ff" />
-              <rect x="340" y="220" width="240" height="170" rx="10" fill="#f6fbff" stroke="#e6f3ff" />
-            </g>
-            <g transform="translate(120,0)">
-              <path
-                d="M200 20 L320 80 Q360 110 320 160 L260 200 Q240 220 200 220 Q160 220 140 200 L80 160 Q40 110 80 80 Z"
-                fill="url(#g1)" stroke="#0B3D91" stroke-width="6" />
-              <circle cx="210" cy="120" r="18" fill="#0B3D91" />
-            </g>
-            <g transform="translate(30,280)">
-              <rect x="0" y="0" width="140" height="90" rx="8" fill="#e9f4ff" />
-              <rect x="160" y="0" width="320" height="90" rx="8" fill="#e9f4ff" />
-            </g>
-            <img src="f7b21f57-00ed-42a1-ab88-67b293685f5f.png" alt="" id="image">
-          </g>
-        </svg>
-      </div>
 
-      <div class="hero-right">
-        <div class="eyebrow">منصة التدريب والاستشارات</div>
-        <h2 class="headline">حماية بياناتك. تأمين مستقبلك الرقمي.</h2>
-        <p class="sub">دورات تطبيقية، أدوات عملية واستشارات مخصّصة لمساعدة الشركات والأفراد على تقوية دفاعاتهم
-          السيبرانية وحماية خصوصيتهم.</p>
-        <div class="cta-row">
-          <button class="btn-primary" onclick="location.href='#courses'">ابدأ الآن</button>
-          <button class="btn-secondary" onclick="location.href='#contact'">تواصل معنا</button>
+      <!-- LEFT — Floating Glowing Image -->
+      <div class="hero-left">
+        <div class="hero-image">
+          <img src="../t11/f7b21f57-00ed-42a1-ab88-67b293685f5f.png" alt="Cyber Security Image">
         </div>
       </div>
+
+      <!-- RIGHT -->
+      <div class="hero-right">
+        <div class="eyebrow">Training & Cybersecurity Solutions</div>
+        <h2 class="headline">Protect Your Data. Secure Your Digital Future.</h2>
+        <p class="sub">Hands-on training, practical cybersecurity tools, and tailored consulting for individuals and
+          companies.</p>
+
+        <div class="cta-row">
+          <button class="btn-primary">Get Started</button>
+          <button class="btn-secondary">Contact Us</button>
+        </div>
+
+        <div class="quick-sections">
+          <button class="quick-btn" onclick="location.href='../blue team/blue_team.html'">Blue Team</button>
+          <button class="quick-btn" onclick="location.href='../red team/red_team.html'">Red Team</button>
+          <button class="quick-btn" onclick="location.href='../tools/tools.html'">Tools</button>
+          <button class="quick-btn" onclick="location.href='../labs/labs.html'">Labs</button>
+        </div>
+      </div>
+
     </section>
 
-    <section class="features" aria-label="أرقام وانجازات">
+    <!-- STATS -->
+    <section class="features">
       <div class="feature">
         <div class="stat">1,240+</div>
-        <h3>خريج</h3>
+        <h3>Graduates</h3>
       </div>
+
       <div class="feature">
         <div class="stat">320+</div>
-        <h3>مشروع مؤمن</h3>
+        <h3>Secured Projects</h3>
       </div>
+
       <div class="feature">
         <div class="stat">4.9/5</div>
-        <h3>متوسط التقييم</h3>
+        <h3>Average Rating</h3>
       </div>
     </section>
 
+    <!-- GRID SECTIONS -->
     <section class="sections">
       <div class="card" id="about">
-        <h3>من نحن</h3>
-        <p>نحن فريق متخصص في التدريب والاستشارات بالأمن السيبراني. نوفّر محتوى عملي ومشاريع حقيقية لتقوية مهاراتك وتحسين
-          وضع منظوماتك الأمنية.</p>
+        <h3>Who We Are</h3>
+        <p>We are a specialized cybersecurity training and consulting team helping individuals and companies strengthen
+          their security posture.</p>
       </div>
 
       <div class="card" id="courses">
-        <h3>الدورات المميّزة</h3>
-        <div class="course-grid">
-          <div class="course">
-            <div>مقدمة في الأمن السيبراني</div>
-            <div>6 أسابيع</div>
-          </div>
-          <div class="course">
-            <div>اختبار الاختراق (Pentesting)</div>
-            <div>8 أسابيع</div>
-          </div>
-          <div class="course">
-            <div>تحليل الحوادث والاستجابة</div>
-            <div>5 أسابيع</div>
-          </div>
-        </div>
-        <div style="margin-top:12px;text-align:left"><a href="#"
-            style="text-decoration:none;color:var(--blue-500);font-weight:700">جميع الدورات →</a></div>
+        <h3>Featured Courses</h3>
+        <ul>
+          <li>Introduction to Cybersecurity — 6 weeks</li>
+          <li>Pentesting & Ethical Hacking — 8 weeks</li>
+          <li>Incident Response — 5 weeks</li>
+        </ul>
       </div>
 
       <div class="card" id="achievements">
-        <h3>إنجازات مختصرة</h3>
-        <ul style="padding-left:18px;color:var(--muted)">
-          <li>تأمين بنيات تحتية لشركات محلية.</li>
-          <li>ورش عمل لفرق تقنية المعلومات.</li>
-          <li>تقديم استشارات لعدد من المنظمات الحكومية والخاصة.</li>
+        <h3>Achievements</h3>
+        <ul>
+          <li>Secured corporate infrastructure.</li>
+          <li>Trained IT teams in multiple workshops.</li>
+          <li>Consulted for government and private sectors.</li>
         </ul>
       </div>
 
       <div class="card" id="contact">
-        <h3>تواصل</h3>
-        <p>للاستفسار أو طلب عرض تدريبي املأ النموذج أو راسلنا على البريد.</p>
-        <form onsubmit="event.preventDefault();alert('تم إرسال طلبك — سنعود إليك قريباً!')">
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <input placeholder="اسمك" required style="padding:10px;border-radius:8px;border:1px solid #e9f4ff" />
-            <input type="email" placeholder="بريدك الإلكتروني" required
-              style="padding:10px;border-radius:8px;border:1px solid #e9f4ff" />
-            <textarea placeholder="رسالتك" rows="4"
-              style="padding:10px;border-radius:8px;border:1px solid #e9f4ff"></textarea>
-            <button class="btn-primary" style="align-self:flex-start">أرسل</button>
-          </div>
+        <h3>Contact Us</h3>
+        <form onsubmit="event.preventDefault(); alert('Message sent!');">
+          <input placeholder="Your name" required>
+          <input type="email" placeholder="Email" required>
+          <textarea placeholder="Message"></textarea>
+          <button class="btn-primary">Send</button>
         </form>
       </div>
     </section>
 
     <footer class="footer">
-      <div>© 2025 درعك الرقمي. كل الحقوق محفوظة.</div>
-      <div style="color:var(--muted);font-weight:600">روابط سريعة: <a href="#about"
-          style="color:var(--blue-500);text-decoration:none;margin-inline-start:10px">عنّا</a></div>
+      <div>© 2025 Your Digital Shield. All rights reserved.</div>
+      <div><a href="#about" style="color:var(--blue-500);">About</a></div>
     </footer>
+
   </div>
 
   <script>
-    // Simple accessibility and small interaction: sticky navbar on scroll
-    (function () {
-      const nav = document.querySelector('.navbar');
-      const site = document.querySelector('.site-wrap');
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const sc = window.scrollY;
-        if (sc > 24) { nav.style.backdropFilter = 'saturate(120%) blur(6px)'; nav.style.background = 'rgba(255,255,255,0.75)'; nav.style.boxShadow = '0 6px 18px rgba(9,30,66,0.04)' } else { nav.style.backdropFilter = 'none'; nav.style.background = 'transparent'; nav.style.boxShadow = 'none' }
-        lastScroll = sc;
-      });
-
-      // Login button demo (opens a simple prompt)
-      document.getElementById('loginBtn').addEventListener('click', function () {
-        const email = prompt('ادخل بريدك الإلكتروني لتسجيل الدخول');
-        if (email) alert('تم استقبال بريدك: ' + email);
-      });
-    })();
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const email = prompt("Enter your email to log in");
+      if (email) alert("Received: " + email);
+    });
   </script>
+
 </body>
 
 </html>

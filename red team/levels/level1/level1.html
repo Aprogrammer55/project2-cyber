@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 
+Change pause time	QUIZ_TIME
+Change popup question	QUIZ_QUESTION
+Change correct answer	QUIZ_ANSWER -->
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Red Team - Level 1: Recon Basics</title>
+    <title>Red Team - Level 1</title>
+
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0d0d0d;
-            color: #e5e5e5;
+            font-family: Consolas, monospace;
+            background: #080808;
+            color: #f2f2f2;
             display: flex;
             min-height: 100vh;
         }
 
+        /* Left + Right Containers */
         .left-container {
             width: 50%;
             padding: 30px;
@@ -24,11 +30,69 @@
         .right-container {
             width: 50%;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            background: #111;
-            border-left: 2px solid #222;
+            background: #0f0f0f;
+            border-left: 2px solid #220000;
             padding: 20px;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 18px;
+            background: #1a1a1a;
+            color: #f2f2f2;
+            border-radius: 6px 6px 0 0;
+            cursor: pointer;
+            border: 1px solid #330000;
+            border-bottom: none;
+        }
+
+        .tab.active {
+            background: #b30000;
+            color: #fff;
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        /* Content Boxes */
+        .content-box {
+            display: none;
+        }
+
+        .content-box.active {
+            display: block;
+        }
+
+        /* Video */
+        video {
+            width: 90%;
+            margin-top: 20px;
+            border: 2px solid #330000;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ff000050;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        /* QUIZ POPUP */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9998;
         }
 
         .quiz-popup {
@@ -37,45 +101,35 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #1a1a1a;
+            background: #150000;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 20px #ff0000;
             padding: 25px;
-            border-radius: 10px;
             width: 350px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            border-radius: 10px;
             z-index: 9999;
+            text-align: center;
+        }
+
+        .quiz-popup input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            background: #0f0f0f;
+            border: 1px solid #ff0000;
+            color: #fff;
         }
 
         .quiz-popup button {
             margin-top: 15px;
             width: 100%;
             padding: 10px;
+            background: #b30000;
             border: none;
-            border-radius: 5px;
-            background: #00aa00;
             color: white;
             cursor: pointer;
             font-size: 16px;
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9998;
-        }
-
-        input {
-            margin-bottom: 8px;
-            padding: 6px;
-            width: 100%;
-        }
-
-        button {
-            font-size: 14px;
+            box-shadow: 0 0 10px #ff0000;
         }
     </style>
 </head>
@@ -83,123 +137,154 @@
 <body>
 
     <div class="left-container">
-        <h1>Red Team - Level 1</h1>
 
-        <h2>📘 Recon Basics</h2>
-        <p>
-            Reconnaissance (Recon) is the first and most critical phase in ethical hacking and red teaming. It involves
-            gathering as much information as possible about a target before attempting any exploitation.<br><br>
-            There are two main types of recon:<br><br>
-            <strong>1. Passive Recon:</strong> Collecting information without directly interacting with the target.
-            Examples: Google Dorking, WHOIS lookup, social media, breached data, public records.<br><br>
-            <strong>2. Active Recon:</strong> Directly interacting with the target to obtain data. Examples: port
-            scanning, service enumeration, OS detection.<br><br>
-            A strong recon phase makes later attacks easier and more effective. You gather intel first — you never
-            attack blindly.
-        </p>
+        <!-- TABS -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('intro')">📘 Introduction</div>
+            <div class="tab" onclick="switchTab('exam')">📝 Final Exam</div>
+        </div>
 
-        <hr>
+        <!-- INTRO TAB -->
+        <div id="intro" class="content-box active">
+            <h1>Red Team — Level 1</h1>
+            <h2>Recon Basics</h2>
+            <p>
+                Reconnaissance (Recon) is the first and most critical phase in ethical hacking and red teaming.
+                It involves gathering as much information as possible about a target.
+                <br><br>
+                <strong>Passive Recon:</strong> Collecting information without interacting with the target.
+                <br><br>
+                <strong>Active Recon:</strong> Direct interaction like scanning and enumeration.
+            </p>
+        </div>
 
-        <h2>📝 Test Yourself — Final Exam</h2>
-        <p>If you answer correctly, Level 2 will be unlocked.</p>
+        <!-- EXAM TAB -->
+        <div id="exam" class="content-box">
+            <h2>Final Exam</h2>
+            <p>Answer correctly to unlock Level 2.</p>
 
-        <div id="exam-section">
-            <p><strong>1.</strong> Explain the difference between passive and active recon.</p>
+            <p><strong>1.</strong> Explain passive vs active recon.</p>
             <input id="q1" type="text">
 
-            <p><strong>2.</strong> Name one tool used for passive recon.</p>
+            <p><strong>2.</strong> Name a passive recon tool.</p>
             <input id="q2" type="text">
 
-            <p><strong>3.</strong> Why is recon important before exploiting a system?</p>
+            <p><strong>3.</strong> Why is recon important?</p>
             <input id="q3" type="text">
 
-            <p><strong>4.</strong> Give one example of active recon.</p>
+            <p><strong>4.</strong> Give one active recon example.</p>
             <input id="q4" type="text">
 
-            <p><strong>5.</strong> What is the first thing a red teamer should look for during recon?</p>
+            <p><strong>5.</strong> What do you look for first?</p>
             <input id="q5" type="text">
 
-            <button onclick="gradeExam()">Submit Answers</button>
+            <button onclick="gradeExam()">Submit</button>
             <p id="exam-result" style="margin-top:15px;font-weight:bold;"></p>
         </div>
+
     </div>
 
+
+    <!-- RIGHT SIDE VIDEO AREA -->
     <div class="right-container">
-        <!-- YouTube IFrame Player -->
-        <div id="player"></div>
+        <h2>Training Video</h2>
+        <input type="file" id="videoFile" accept="video/*">
+
+        <video id="trainingVideo" controls></video>
     </div>
 
+
+    <!-- QUIZ POPUP -->
     <div class="overlay" id="overlay"></div>
 
     <div class="quiz-popup" id="quiz">
-        <h3>Quick Quiz</h3>
-        <p>What was the main idea explained so far?</p>
-        <button onclick="closeQuiz()">Continue</button>
+        <h3>Red Team Checkpoint</h3>
+
+        <!-- SEARCH CTRL+F: QUIZ_QUESTION -->
+        <!-- 🔥 CHANGE THE QUESTION HERE  -->
+        <p>What is passive recon?</p>
+
+        <input id="quiz-answer" placeholder="Type your answer...">
+        <button onclick="submitQuiz()">Submit</button>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '360',
-                width: '640',
-                videoId: '3g1rAiu1Vo8', // <-- YOUR VIDEO ID HERE
-                playerVars: { rel: 0, modestbranding: 1 },
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
+        /* TAB SWITCHING */
+        function switchTab(tab) {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".content-box").forEach(b => b.classList.remove("active"));
+
+            event.target.classList.add("active");
+            document.getElementById(tab).classList.add("active");
         }
 
-        var quizShown = false;
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.PLAYING) {
-                var checkInterval = setInterval(function () {
-                    if (player.getCurrentTime() >= 30 && !quizShown) {
-                        player.pauseVideo();
-                        quizShown = true;
-                        document.getElementById('quiz').style.display = 'block';
-                        document.getElementById('overlay').style.display = 'block';
-                        clearInterval(checkInterval);
-                    }
-                }, 500);
+        /* VIDEO HANDLING */
+        const fileInput = document.getElementById("videoFile");
+        const video = document.getElementById("trainingVideo");
+
+        let quizShown = false;
+
+        fileInput.addEventListener("change", () => {
+            const file = fileInput.files[0];
+            if (file) {
+                video.src = URL.createObjectURL(file);
+                video.load();
+                quizShown = false; // reset for new video
+            }
+        });
+
+        // SEARCH CTRL+F: QUIZ_TIME  
+        // 🔥 CHANGE PAUSE TIME HERE
+        const pauseTime = 5; // seconds
+
+        video.addEventListener("timeupdate", () => {
+            if (!quizShown && video.currentTime >= pauseTime) {
+                video.pause();
+                quizShown = true;
+
+                document.getElementById("quiz").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+            }
+        });
+
+        /* QUIZ CHECK */
+        function submitQuiz() {
+            const answer = document.getElementById("quiz-answer").value.toLowerCase();
+
+            // SEARCH CTRL+F: QUIZ_ANSWER  
+            // 🔥 CHANGE CORRECT ANSWER HERE
+            if (answer.includes("passive")) {
+                closeQuiz();
+                video.play();
+            } else {
+                alert("Incorrect. Try again, soldier.");
             }
         }
 
         function closeQuiz() {
-            document.getElementById('quiz').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-            player.playVideo();
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
         }
 
+        /* EXAM GRADING */
         function gradeExam() {
             let correct = 0;
 
-            let a1 = document.getElementById('q1').value.toLowerCase();
-            if (a1.includes('passive') && a1.includes('active')) correct++;
+            if (q1.value.toLowerCase().includes("passive")) correct++;
+            if (q2.value.toLowerCase().includes("whois") || q2.value.toLowerCase().includes("google")) correct++;
+            if (q3.value.toLowerCase().includes("info")) correct++;
+            if (q4.value.toLowerCase().includes("scan")) correct++;
+            if (q5.value.toLowerCase().includes("target")) correct++;
 
-            let a2 = document.getElementById('q2').value.toLowerCase();
-            if (a2.includes('whois') || a2.includes('google') || a2.includes('osint') || a2.includes('shodan')) correct++;
-
-            let a3 = document.getElementById('q3').value.toLowerCase();
-            if (a3.includes('information') || a3.includes('intel') || a3.includes('understand')) correct++;
-
-            let a4 = document.getElementById('q4').value.toLowerCase();
-            if (a4.includes('scan') || a4.includes('nmap') || a4.includes('enumeration')) correct++;
-
-            let a5 = document.getElementById('q5').value.toLowerCase();
-            if (a5.includes('target') || a5.includes('ip') || a5.includes('footprint')) correct++;
-
-            let result = document.getElementById('exam-result');
+            let out = document.getElementById("exam-result");
 
             if (correct >= 4) {
-                result.style.color = '#00ff00';
-                result.innerText = '✔ Correct! Level 2 unlocked!';
-                localStorage.setItem('level2_unlocked', 'true');
+                out.style.color = "#00ff00";
+                out.innerText = "✔ Level 2 unlocked!";
+                localStorage.setItem("level2_unlocked", "true");
             } else {
-                result.style.color = 'red';
-                result.innerText = '✘ Some answers are incorrect. Try again.';
+                out.style.color = "red";
+                out.innerText = "✘ Not enough correct answers.";
             }
         }
     </script>
