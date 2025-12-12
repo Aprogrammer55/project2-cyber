@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Security Tools</title>
+
+    <!-- =====================
+         GLOBAL CYBER STYLE
+         ===================== -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #050b14, #000);
+            color: #00fff7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .tools-container {
+            width: 90%;
+            max-width: 900px;
+            padding: 40px;
+            border-radius: 16px;
+            background: rgba(5, 15, 30, 0.85);
+            box-shadow:
+                0 0 25px rgba(0, 255, 247, 0.25),
+                inset 0 0 20px rgba(0, 255, 247, 0.05);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #00fff7;
+        }
+
+        /* ===== TOOLS GRID ===== */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        /* ===== TOOL BUTTON ===== */
+        .tool-btn {
+            height: 140px;
+            border-radius: 14px;
+            background: linear-gradient(145deg, #07182e, #020a14);
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            color: #00fff7;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tool-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(0, 255, 247, 0.25),
+                    transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .tool-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        /* ===== TOOL LABEL ===== */
+        .tool-name {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== FOOT NOTE ===== */
+        .note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tools-container">
+        <h1>CYBER SECURITY TOOLS</h1>
+
+        <div class="tools-grid">
+
+            <!-- =====================
+                 IP TOOL BUTTON
+                 FUTURE: IP lookup / recon
+                 ===================== -->
+            <button class="tool-btn" onclick="goToIPTool()">
+                <span class="tool-name">IP TOOL</span>
+            </button>
+
+            <!-- =====================
+                 PORT SCANNER
+                 PLACEHOLDER FOR NOW
+                 ===================== -->
+            <button class="tool-btn" onclick="comingSoon('Port Scanner')">
+                <span class="tool-name">PORT SCANNER</span>
+            </button>
+
+            <!-- =====================
+                 HASH ANALYZER
+                 PLACEHOLDER FOR NOW
+                 ===================== -->
+            <button class="tool-btn" onclick="comingSoon('Hash Analyzer')">
+                <span class="tool-name">HASH ANALYZER</span>
+            </button>
+
+            <!-- =====================
+                 DNS RECON TOOL
+                 PLACEHOLDER FOR NOW
+                 ===================== -->
+            <button class="tool-btn" onclick="comingSoon('DNS Recon')">
+                <span class="tool-name">DNS RECON</span>
+            </button>
+
+        </div>
+
+        <div class="note">
+            ⚠ Educational & Blue-Team Focused Tools
+        </div>
+    </div>
+
+    <!-- =====================
+         JAVASCRIPT SECTION
+         ===================== -->
+    <script>
+        // ===== NAVIGATE TO IP TOOL PAGE =====
+        function goToIPTool() {
+            window.location.href = "ip-tool/ip_tool.html";
+        }
+
+        // ===== TEMP PLACEHOLDER ALERT =====
+        function comingSoon(toolName) {
+            alert(toolName + " is coming soon 👀");
+        }
+    </script>
+
+</body>
+
+</html>

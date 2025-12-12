@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Labs – Bandit Track</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #050b14, #000);
+            color: #00fff7;
+            padding: 40px 0;
+        }
+
+        .labs-container {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 18px;
+            background: rgba(5, 15, 30, 0.92);
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.25);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px #00fff7;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.75;
+            margin-bottom: 35px;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .level-card {
+            background: linear-gradient(145deg, #07182e, #020a14);
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 14px;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .level-title {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .level-desc {
+            font-size: 13px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid;
+        }
+
+        .easy {
+            color: #00ff9c;
+            border-color: #00ff9c;
+        }
+
+        .medium {
+            color: #ffd000;
+            border-color: #ffd000;
+        }
+
+        .hard {
+            color: #ff4d4d;
+            border-color: #ff4d4d;
+        }
+
+        .locked {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .locked::after {
+            content: "🔒 LOCKED";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="labs-container">
+
+        <h1>Bandit Labs</h1>
+        <div class="subtitle">
+            Linux • SSH • Privilege • Files • Git • Cron • Networking
+        </div>
+
+        <div class="levels-grid">
+
+            <!-- LEVEL 0 -->
+            <div class="level-card" onclick="openLevel('levels/bandit0.html')">
+                <div class="level-title">Level 0</div>
+                <div class="level-desc">
+                    Connect to the game using SSH and access your first shell.
+                </div>
+                <div class="badge easy">EASY</div>
+            </div>
+
+            <!-- LEVEL 1 -->
+            <div class="level-card" onclick="openLevel('levels/bandit1.html')">
+                <div class="level-title">Level 1</div>
+                <div class="level-desc">
+                    Locate the password stored in a readable file.
+                </div>
+                <div class="badge easy">EASY</div>
+            </div>
+
+            <!-- LEVEL 2 -->
+            <div class="level-card" onclick="openLevel('levels/bandit2.html')">
+                <div class="level-title">Level 2</div>
+                <div class="level-desc">
+                    Deal with filenames that start with special characters.
+                </div>
+                <div class="badge easy">EASY</div>
+            </div>
+
+            <!-- FUTURE LEVELS -->
+            <div class="level-card locked">
+                <div class="level-title">Level 3+</div>
+                <div class="level-desc">
+                    Hidden files, permissions, cron jobs, git & more.
+                </div>
+                <div class="badge medium">LOCKED</div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            ⚠ Educational use only • Inspired by OverTheWire Bandit
+        </div>
+
+    </div>
+
+    <script>
+        function openLevel(path) {
+            window.location.href = path;
+        }
+    </script>
+
+</body>
+
+</html>

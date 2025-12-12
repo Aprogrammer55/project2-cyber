@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red & Blue Team | Cyber Security</title>
+
+<style>
+    /* -------- Base -------- */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #0b0f17;
+        color: #e6e6e6;
+    }
+
+    h1, h2, h3 {
+        margin: 0;
+    }
+
+    /* -------- Header -------- */
+    header {
+        background: #111826;
+        padding: 20px 40px;
+        border-bottom: 1px solid #202b3c;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+
+    /* -------- Section Titles -------- */
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 20px;
+        text-align: center;
+        padding-top: 40px;
+        font-weight: 700;
+    }
+
+    /* -------- Containers -------- */
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px 20px 60px;
+    }
+
+    /* -------- Team Box -------- */
+    .team-box {
+        background: #131a26;
+        padding: 25px;
+        margin-bottom: 40px;
+        border-radius: 12px;
+        border: 1px solid #1f2a3b;
+        box-shadow: 0 0 25px rgba(0,0,0,0.35);
+        animation: fadeIn 1s ease;
+    }
+
+    .team-header {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+
+    .red { color: #ff4a4a; }
+    .blue { color: #4aa8ff; }
+
+    .desc {
+        margin-bottom: 20px;
+        color: #b9c4d1;
+        line-height: 1.6;
+    }
+
+    /* -------- Lists -------- */
+    .list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .list li {
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        background: #0f141d;
+        border-left: 4px solid #334155;
+        border-radius: 6px;
+        transition: 0.25s;
+        color: #d7dee7;
+    }
+
+    .list li:hover {
+        transform: translateX(5px);
+        background: #161d29;
+    }
+
+    .red-border { border-color: #ff4a4a; }
+    .blue-border { border-color: #4aa8ff; }
+
+    /* -------- Tags -------- */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .tag {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 20px;
+        background: #111827;
+        border: 1px solid #273244;
+        color: #c6d4e3;
+        transition: .2s;
+    }
+
+    .tag.red { border-color: #ff4a4a; color: #ff7a7a; }
+    .tag.blue { border-color: #4aa8ff; color: #82c3ff; }
+
+    .tag:hover {
+        background: #1a2333;
+    }
+
+    /* -------- Animations -------- */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cyber Security — Red Team & Blue Team</h1>
+</header>
+
+<div class="container">
+
+    <!-- RED TEAM -->
+    <div class="section-title red">Red Team</div>
+
+    <div class="team-box">
+        <div class="team-header red">Mission</div>
+        <p class="desc">
+            The Red Team simulates real-world cyber attacks to test an organization’s defenses.
+            Their goal is to identify weaknesses before real attackers do.
+        </p>
+
+        <h3 class="red">Core Roles</h3>
+        <ul class="list">
+            <li class="red-border">Red Team Operator (Exploitation & Payloads)</li>
+            <li class="red-border">Threat Emulator (Adversary TTP mapping)</li>
+            <li class="red-border">OPSEC Specialist (Stealth & Evasion)</li>
+        </ul>
+
+        <h3 class="red" style="margin-top:20px;">Skills Required</h3>
+        <div class="tags">
+            <span class="tag red">Penetration Testing</span>
+            <span class="tag red">Lateral Movement</span>
+            <span class="tag red">Privilege Escalation</span>
+            <span class="tag red">C2 Frameworks</span>
+            <span class="tag red">Social Engineering</span>
+        </div>
+
+        <h3 class="red" style="margin-top:25px;">Tools</h3>
+        <ul class="list">
+            <li class="red-border">Cobalt Strike / Sliver</li>
+            <li class="red-border">Metasploit Framework</li>
+            <li class="red-border">Burp Suite</li>
+            <li class="red-border">BloodHound</li>
+            <li class="red-border">Custom Payloads & Scripts</li>
+        </ul>
+    </div>
+
+    <!-- BLUE TEAM -->
+    <div class="section-title blue">Blue Team</div>
+
+    <div class="team-box">
+        <div class="team-header blue">Mission</div>
+        <p class="desc">
+            The Blue Team defends the organization’s network by monitoring, detecting,
+            and responding to cyber threats in real-time.
+        </p>
+
+        <h3 class="blue">Core Roles</h3>
+        <ul class="list">
+            <li class="blue-border">SOC Analyst (Monitoring & Alerting)</li>
+            <li class="blue-border">Incident Responder</li>
+            <li class="blue-border">Threat Hunter</li>
+            <li class="blue-border">Forensics Specialist</li>
+        </ul>
+
+        <h3 class="blue" style="margin-top:20px;">Skills Required</h3>
+        <div class="tags">
+            <span class="tag blue">SIEM Monitoring</span>
+            <span class="tag blue">Log Analysis</span>
+            <span class="tag blue">Threat Intelligence</span>
+            <span class="tag blue">Incident Response</span>
+            <span class="tag blue">Digital Forensics</span>
+        </div>
+
+        <h3 class="blue" style="margin-top:25px;">Tools</h3>
+        <ul class="list">
+            <li class="blue-border">Splunk / QRadar / ELK</li>
+            <li class="blue-border">EDR (CrowdStrike, Defender, SentinelOne)</li>
+            <li class="blue-border">Wireshark</li>
+            <li class="blue-border">OSINT Tools</li>
+            <li class="blue-border">Forensics Suites</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

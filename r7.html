@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Roadmap | Red Team & Blue Team</title>
+
+<style>
+
+/* ------------------ GLOBAL ------------------ */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #04060a;
+    color: #e3eeff;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+/* ------------------ HEADER ------------------ */
+header {
+    background: #070c12;
+    padding: 30px;
+    text-align: center;
+    border-bottom: 1px solid #101b29;
+    box-shadow: 0 0 35px rgba(0, 110, 255, .35);
+}
+
+header h1 {
+    font-size: 34px;
+    color: #7bc6ff;
+    text-shadow: 0 0 12px #1f8fff, 0 0 28px #53a4ff;
+}
+
+/* ------------------ TITLES ------------------ */
+.section-title {
+    font-size: 30px;
+    text-align: center;
+    margin: 40px 0 20px;
+    font-weight: 700;
+}
+
+/* colors */
+.red { color: #ff4f4f; text-shadow: 0 0 12px #ff3434; }
+.blue { color: #4fa8ff; text-shadow: 0 0 12px #4fa8ff; }
+
+/* ------------------ CONTAINER ------------------ */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+}
+
+/* ------------------ CARDS ------------------ */
+.card {
+    background: rgba(10, 16, 28, 0.8);
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    border: 1px solid #182537;
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.25);
+    animation: fadeIn 1.0s ease;
+}
+
+.card:hover {
+    border-color: #3b9dff;
+    box-shadow: 0 0 40px rgba(0, 150, 255, 0.55);
+    transform: translateY(-4px);
+    transition: 0.3s;
+}
+
+/* ------------------ LISTS ------------------ */
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.list li {
+    background: rgba(12, 20, 34, 0.75);
+    margin: 10px 0;
+    padding: 12px 16px;
+    border-left: 4px solid #3a9bff;
+    border-radius: 6px;
+    transition: .2s;
+}
+
+.list li:hover {
+    background: rgba(22, 35, 55, 0.9);
+    transform: translateX(6px);
+}
+
+/* Red Border */
+.red-border { border-color: #ff3434; }
+
+/* Blue Border */
+.blue-border { border-color: #3a9bff; }
+
+/* ------------------ TAGS ------------------ */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background: rgba(18, 30, 50, 0.7);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid #3a9bff;
+    text-shadow: 0 0 8px #3a9bff;
+    transition: .2s;
+}
+
+.tag.red { border-color: #ff3434; text-shadow: 0 0 8px #ff3434; }
+.tag.blue { border-color: #4fa8ff; }
+
+/* ------------------ ANIMATIONS ------------------ */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cyber Security Roadmap — Red Team & Blue Team</h1>
+</header>
+
+<div class="container">
+
+<!-- RED TEAM SECTION -->
+<div class="section-title red">Red Team Roadmap</div>
+
+<!-- Fundamentals -->
+<div class="card">
+    <h2 class="red">Fundamentals</h2>
+    <ul class="list">
+        <li class="red-border">Networking basics (TCP/IP, DNS, HTTP)</li>
+        <li class="red-border">Linux & Windows internals</li>
+        <li class="red-border">Basic programming (Python & PowerShell)</li>
+        <li class="red-border">Security foundations & threat concepts</li>
+    </ul>
+</div>
+
+<!-- Skills -->
+<div class="card">
+    <h2 class="red">Skills</h2>
+    <div class="tags">
+        <span class="tag red">Exploitation</span>
+        <span class="tag red">Privilege Escalation</span>
+        <span class="tag red">Lateral Movement</span>
+        <span class="tag red">Social Engineering</span>
+        <span class="tag red">Payload Development</span>
+        <span class="tag red">OPSEC Evasion</span>
+    </div>
+</div>
+
+<!-- Tools -->
+<div class="card">
+    <h2 class="red">Tools</h2>
+    <ul class="list">
+        <li class="red-border">Cobalt Strike / Sliver</li>
+        <li class="red-border">Metasploit Framework</li>
+        <li class="red-border">Burp Suite</li>
+        <li class="red-border">BloodHound + SharpHound</li>
+        <li class="red-border">Custom Scripts / Payloads</li>
+    </ul>
+</div>
+
+<!-- Attack Lifecycle -->
+<div class="card">
+    <h2 class="red">Attack Lifecycle</h2>
+    <ul class="list">
+        <li class="red-border">Reconnaissance</li>
+        <li class="red-border">Initial Access</li>
+        <li class="red-border">Privilege Escalation</li>
+        <li class="red-border">Lateral Movement</li>
+        <li class="red-border">Persistence</li>
+        <li class="red-border">Actions on Objectives</li>
+    </ul>
+</div>
+
+<!-- Career Path -->
+<div class="card">
+    <h2 class="red">Career Path</h2>
+    <ul class="list">
+        <li class="red-border">Junior Pen Tester</li>
+        <li class="red-border">Red Team Operator</li>
+        <li class="red-border">Threat Emulator</li>
+        <li class="red-border">Red Team Lead</li>
+    </ul>
+</div>
+
+<!-- Specializations -->
+<div class="card">
+    <h2 class="red">Specializations</h2>
+    <div class="tags">
+        <span class="tag red">Adversary Simulation</span>
+        <span class="tag red">Web Exploitation</span>
+        <span class="tag red">AD Attacks</span>
+        <span class="tag red">Malware Dev</span>
+    </div>
+</div>
+
+
+<!-- BLUE TEAM SECTION -->
+<div class="section-title blue">Blue Team Roadmap</div>
+
+<!-- Fundamentals -->
+<div class="card">
+    <h2 class="blue">Fundamentals</h2>
+    <ul class="list">
+        <li class="blue-border">Networking Essentials</li>
+        <li class="blue-border">Log Analysis Basics</li>
+        <li class="blue-border">Operating System Security</li>
+        <li class="blue-border">Cyber Defense Concepts</li>
+    </ul>
+</div>
+
+<!-- Skills -->
+<div class="card">
+    <h2 class="blue">Skills</h2>
+    <div class="tags">
+        <span class="tag blue">SIEM Analysis</span>
+        <span class="tag blue">Threat Hunting</span>
+        <span class="tag blue">Incident Response</span>
+        <span class="tag blue">Malware Analysis</span>
+        <span class="tag blue">Forensics</span>
+    </div>
+</div>
+
+<!-- Tools -->
+<div class="card">
+    <h2 class="blue">Tools</h2>
+    <ul class="list">
+        <li class="blue-border">EDR Platforms</li>
+        <li class="blue-border">SIEM (Splunk, QRadar)</li>
+        <li class="blue-border">Forensics Tools (Volatility, Autopsy)</li>
+        <li class="blue-border">Network Monitoring (Zeek, Suricata)</li>
+        <li class="blue-border">Packet Analysis (Wireshark)</li>
+    </ul>
+</div>
+
+<!-- Defense Lifecycle -->
+<div class="card">
+    <h2 class="blue">Defense Lifecycle</h2>
+    <ul class="list">
+        <li class="blue-border">Monitoring & Detection</li>
+        <li class="blue-border">Alert Triage</li>
+        <li class="blue-border">Incident Response</li>
+        <li class="blue-border">Threat Hunting</li>
+        <li class="blue-border">Lessons Learned</li>
+    </ul>
+</div>
+
+<!-- SOC Levels -->
+<div class="card">
+    <h2 class="blue">SOC Levels</h2>
+    <ul class="list">
+        <li class="blue-border">L1 – Monitoring</li>
+        <li class="blue-border">L2 – Investigation</li>
+        <li class="blue-border">L3 – Response & Containment</li>
+    </ul>
+</div>
+
+<!-- Specializations -->
+<div class="card">
+    <h2 class="blue">Specializations</h2>
+    <div class="tags">
+        <span class="tag blue">Threat Intelligence</span>
+        <span class="tag blue">Detection Engineering</span>
+        <span class="tag blue">Digital Forensics</span>
+        <span class="tag blue">SOC Operations</span>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
