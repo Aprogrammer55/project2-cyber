@@ -123,7 +123,7 @@
                  PORT SCANNER
                  PLACEHOLDER FOR NOW
                  ===================== -->
-            <button class="tool-btn" onclick="comingSoon('Port Scanner')">
+            <button class="tool-btn" onclick="goToPORTTool()">
                 <span class="tool-name">PORT SCANNER</span>
             </button>
 
@@ -131,7 +131,7 @@
                  HASH ANALYZER
                  PLACEHOLDER FOR NOW
                  ===================== -->
-            <button class="tool-btn" onclick="comingSoon('Hash Analyzer')">
+            <button class="tool-btn" onclick="goToHASHTool()">
                 <span class="tool-name">HASH ANALYZER</span>
             </button>
 
@@ -139,8 +139,21 @@
                  DNS RECON TOOL
                  PLACEHOLDER FOR NOW
                  ===================== -->
-            <button class="tool-btn" onclick="comingSoon('DNS Recon')">
+            <button class="tool-btn" onclick="goToDNSTool()">
                 <span class="tool-name">DNS RECON</span>
+            </button>
+
+            <!-- =====================
+                 PASSWORD TOOL
+            ===================== -->
+            <button class="tool-btn" onclick="goToPASSTool()">
+                <span class="tool-name">PASSWORD POWER CHECK</span>
+            </button>
+            <!-- =====================
+                 HEADER ANALYSER TOOL
+            ===================== -->
+            <button class="tool-btn" onclick="goToHEADTool()">
+                <span class="tool-name">HTTP SECURITY HEADER ANALYZER</span>
             </button>
 
         </div>
@@ -157,6 +170,21 @@
         // ===== NAVIGATE TO IP TOOL PAGE =====
         function goToIPTool() {
             window.location.href = "ip-tool/ip_tool.html";
+        }
+        function goToPORTTool() {
+            window.location.href = "port-tool/port_tool.html";
+        }
+        function goToHASHTool() {
+            window.location.href = "hash-tool/hash_tool.html";
+        }
+        function goToDNSTool() {
+            window.location.href = "dns-tool/dns_tool.html";
+        }
+        function goToPASSTool() {
+            window.location.href = "password-tool/password_tool.html";
+        }
+        function goToHEADTool() {
+            window.location.href = "header-tool/header_tool.html";
         }
 
         // ===== TEMP PLACEHOLDER ALERT =====

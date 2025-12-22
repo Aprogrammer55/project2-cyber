@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CTF Level 3</title>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #04131d, #000);
+            color: #ffd000;
+            font-family: Consolas, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .panel {
+            width: 500px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid #ffd00055;
+            border-radius: 16px;
+        }
+
+        input,
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background: #020b12;
+            border: 1px solid #ffd000;
+            color: #ffd000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="panel">
+        <h2>LEVEL 3 – Metadata Leak</h2>
+        <p>Developers leave traces behind…</p>
+
+        <input id="flag" placeholder="CTF{...}">
+        <button onclick="check()">SUBMIT</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        const internalConfig = {
+            version: "1.4.2",
+            debug: true,
+            flag: "CTF{devtools_are_powerful}"
+        };
+
+        function check() {
+            if (flag.value === internalConfig.flag) {
+                msg.innerText = "✔ You inspected correctly!";
+            } else {
+                msg.innerText = "✘ Look deeper.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

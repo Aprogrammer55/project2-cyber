@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hash Analyzer</title>
+
+    <style>
+        body {
+            background: #0a0c10;
+            color: #00fff7;
+            font-family: "Segoe UI", sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-shadow: 0 0 15px #00fff7;
+        }
+
+        p {
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        textarea {
+            flex: 1;
+            padding: 14px;
+            background: #07101d;
+            border: 2px solid #00fff7;
+            border-radius: 10px;
+            color: #00fff7;
+            font-size: 15px;
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            padding: 14px 18px;
+            background: #00fff7;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .result-card {
+            margin-top: 25px;
+            background: #071f37;
+            border: 1px solid #00fff7;
+            border-radius: 14px;
+            padding: 22px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            box-shadow: 0 0 18px #00fff750;
+        }
+
+        .result-card div {
+            padding: 8px 0;
+            border-bottom: 1px dashed #00fff740;
+        }
+
+        .result-card div:last-child {
+            border: none;
+        }
+
+        .hash {
+            font-family: Consolas, monospace;
+            word-break: break-all;
+            font-size: 14px;
+        }
+
+        .warning {
+            margin-top: 20px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🔐 Hash Analyzer</h1>
+    <p>Identify common hash types used in cybersecurity</p>
+
+    <div class="input-container">
+        <textarea id="hashInput" placeholder="Paste hash here..."></textarea>
+        <button onclick="analyzeHash()">ANALYZE</button>
+    </div>
+
+    <div id="result"></div>
+
+    <div class="warning">
+        ⚠ Educational analysis only — no cracking performed
+    </div>
+
+    <script>
+        function analyzeHash() {
+            const hash = document.getElementById("hashInput").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (!hash) {
+                alert("Please enter a hash value");
+                return;
+            }
+
+            let type = "Unknown";
+            let info = "Hash type could not be confidently identified.";
+
+            if (/^[a-f0-9]{32}$/i.test(hash)) {
+                type = "MD5";
+                info = "Commonly used for file integrity checks. Cryptographically broken.";
+            } else if (/^[a-f0-9]{40}$/i.test(hash)) {
+                type = "SHA-1";
+                info = "Previously secure. Now deprecated due to collisions.";
+            } else if (/^[a-f0-9]{64}$/i.test(hash)) {
+                type = "SHA-256";
+                info = "Strong modern hash used in security systems.";
+            } else if (/^[a-f0-9]{128}$/i.test(hash)) {
+                type = "SHA-512";
+                info = "Very strong hash used for sensitive data.";
+            }
+
+            resultDiv.innerHTML = `
+                <div class="result-card">
+                    <div><strong>Hash:</strong><br><span class="hash">${hash}</span></div>
+                    <div><strong>Detected Type:</strong> ${type}</div>
+                    <div><strong>Security Notes:</strong> ${info}</div>
+                    <div><strong>Typical Usage:</strong>
+                        ${getUsage(type)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getUsage(type) {
+            switch (type) {
+                case "MD5":
+                    return "Legacy password storage, checksums, malware signatures.";
+                case "SHA-1":
+                    return "Old certificates, Git commits (legacy).";
+                case "SHA-256":
+                    return "Modern authentication, file verification, blockchain.";
+                case "SHA-512":
+                    return "High-security systems, password hashing (with salt).";
+                default:
+                    return "Unknown or non-standard hash.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

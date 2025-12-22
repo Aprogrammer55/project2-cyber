@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CTF Level 1</title>
+
+    <style>
+        body {
+            background: radial-gradient(circle, #06131f, #000);
+            color: #00ffee;
+            font-family: Consolas, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ffee55;
+            padding: 30px;
+            border-radius: 14px;
+            width: 420px;
+            text-align: center;
+        }
+
+        input,
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background: #020b12;
+            border: 1px solid #00ffee;
+            color: #00ffee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FLAG: CTF{view_source_master} -->
+
+    <div class="box">
+        <h2>LEVEL 1 – Hidden Signal</h2>
+        <p>The signal is right in front of you.</p>
+
+        <input id="flag" placeholder="CTF{...}">
+        <button onclick="check()">SUBMIT</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        function check() {
+            const flag = document.getElementById("flag").value;
+            if (flag === "CTF{view_source_master}") {
+                document.getElementById("msg").innerText = "✔ Correct!";
+            } else {
+                document.getElementById("msg").innerText = "✘ Wrong flag";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

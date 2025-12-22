@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CTF Level 2</title>
+
+    <style>
+        body {
+            background: linear-gradient(145deg, #020b14, #000);
+            color: #00ffcc;
+            font-family: Consolas, monospace;
+            padding: 60px;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: auto;
+            background: #061824;
+            border: 1px solid #00ffcc55;
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        input,
+        button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            background: #020b12;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>LEVEL 2 – Encoded Truth</h2>
+        <p>Message intercepted:</p>
+        <pre>Q1RGe2Jhc2U2NF9pc19lYXN5fQ==</pre>
+
+        <input id="flag" placeholder="CTF{...}">
+        <button onclick="check()">SUBMIT</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        function check() {
+            if (document.getElementById("flag").value === "CTF{base64_is_easy}") {
+                msg.innerText = "✔ Decoded correctly!";
+            } else {
+                msg.innerText = "✘ Try decoding again.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

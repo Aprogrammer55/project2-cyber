@@ -74,6 +74,24 @@
         .result-card div:last-child {
             border: none;
         }
+
+        /* 🌍 MAP CARD */
+        .map-card {
+            margin-top: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #00f2ff;
+            box-shadow: 0 0 20px #00f2ff60;
+        }
+
+        iframe {
+            width: 100%;
+            height: 320px;
+            border: none;
+        }
     </style>
 </head>
 
@@ -88,30 +106,30 @@
     </div>
 
     <div id="result"></div>
+
     <script>
         async function lookupIP() {
             const ip = document.getElementById("ipInput").value.trim();
+            const resultDiv = document.getElementById("result");
 
             if (!ip) {
                 alert("Please enter an IP address");
                 return;
             }
 
-            document.getElementById("result").innerHTML =
-                `<p style="opacity:0.7;">🔍 Scanning ${ip}...</p>`;
+            resultDiv.innerHTML = `<p style="opacity:0.7;">🔍 Scanning ${ip}...</p>`;
 
             try {
-                // ✅ Correct free API (NO KEY NEEDED)
                 const response = await fetch(`https://ipwho.is/${ip}`);
                 const data = await response.json();
 
                 if (!data.success) {
-                    document.getElementById("result").innerHTML =
+                    resultDiv.innerHTML =
                         `<p style="color:#ff4d4d;">❌ Invalid IP or lookup failed</p>`;
                     return;
                 }
 
-                document.getElementById("result").innerHTML = `
+                resultDiv.innerHTML = `
                 <div class="result-card">
                     <div><strong>IP:</strong> ${data.ip}</div>
                     <div><strong>Country:</strong> ${data.country} (${data.country_code})</div>
@@ -121,10 +139,15 @@
                     <div><strong>ASN:</strong> ${data.asn}</div>
                     <div><strong>Coordinates:</strong> ${data.latitude}, ${data.longitude}</div>
                 </div>
-            `;
 
+                <div class="map-card">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=${data.latitude},${data.longitude}&z=10&output=embed">
+                    </iframe>
+                </div>
+                `;
             } catch (error) {
-                document.getElementById("result").innerHTML =
+                resultDiv.innerHTML =
                     `<p style="color:#ff4d4d;">❌ Error fetching data</p>`;
                 console.error(error);
             }

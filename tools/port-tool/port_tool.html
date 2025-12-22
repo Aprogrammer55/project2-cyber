@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Port Scanner</title>
+
+    <style>
+        body {
+            background: #0a0c10;
+            color: #00fff7;
+            font-family: "Segoe UI", sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-shadow: 0 0 15px #00fff7;
+        }
+
+        p {
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            background: #07101d;
+            border: 2px solid #00fff7;
+            border-radius: 10px;
+            color: #00fff7;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 16px;
+            background: #00fff7;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .result-card {
+            margin-top: 25px;
+            background: #071f37;
+            border: 1px solid #00fff7;
+            border-radius: 14px;
+            padding: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            box-shadow: 0 0 18px #00fff750;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+        }
+
+        .warning {
+            margin-top: 20px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🔍 Port Scanner</h1>
+    <p>Scan open ports using real Nmap intelligence</p>
+
+    <div class="input-container">
+        <input type="text" id="targetInput" placeholder="e.g. scanme.nmap.org">
+        <button onclick="scanPorts()">SCAN</button>
+    </div>
+
+    <div id="result"></div>
+
+    <div class="warning">
+        ⚠ Educational use only — external API powered scan
+    </div>
+
+    <script>
+        async function scanPorts() {
+            const target = document.getElementById("targetInput").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (!target) {
+                alert("Please enter an IP or domain");
+                return;
+            }
+
+            resultDiv.innerHTML = `<p style="opacity:0.7;">🧠 Scanning ${target}...</p>`;
+
+            try {
+                const response = await fetch(
+                    `https://api.hackertarget.com/nmap/?q=${target}`
+                );
+
+                const text = await response.text();
+
+                if (text.includes("error")) {
+                    resultDiv.innerHTML =
+                        `<p style="color:#ff4d4d;">❌ Scan failed or rate-limited</p>`;
+                    return;
+                }
+
+                resultDiv.innerHTML = `
+                    <div class="result-card">
+${text}
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML =
+                    `<p style="color:#ff4d4d;">❌ Error contacting scan API</p>`;
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

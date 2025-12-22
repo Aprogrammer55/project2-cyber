@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Capture The Flag | Cyber Arena</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Consolas", "Segoe UI", monospace;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                repeating-linear-gradient(0deg,
+                    rgba(0, 255, 255, 0.03),
+                    rgba(0, 255, 255, 0.03) 1px,
+                    transparent 1px,
+                    transparent 3px),
+                radial-gradient(circle at top, #040b14, #000);
+            color: #00ffee;
+            padding: 50px 0;
+        }
+
+        .ctf-container {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.4rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ffee;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 45px;
+        }
+
+        /* ===== GRID ===== */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        /* ===== LEVEL CARD ===== */
+        .ctf-card {
+            position: relative;
+            padding: 24px;
+            border-radius: 16px;
+            background:
+                linear-gradient(160deg, rgba(0, 255, 238, 0.08), rgba(0, 0, 0, 0.9));
+            border: 1px solid rgba(0, 255, 238, 0.35);
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.35s ease;
+        }
+
+        .ctf-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(0, 255, 238, 0.35),
+                    transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .ctf-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .ctf-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 0 35px rgba(0, 255, 238, 0.6);
+        }
+
+        .level-number {
+            font-size: 13px;
+            opacity: 0.6;
+            margin-bottom: 8px;
+        }
+
+        .level-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .level-desc {
+            font-size: 13px;
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+
+        .difficulty {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid;
+        }
+
+        .easy {
+            color: #00ff9c;
+            border-color: #00ff9c;
+        }
+
+        .medium {
+            color: #ffd000;
+            border-color: #ffd000;
+        }
+
+        .hard {
+            color: #ff4d4d;
+            border-color: #ff4d4d;
+        }
+
+        /* ===== LOCKED ===== */
+        .locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .locked::after {
+            content: "🔒 LOCKED";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ctf-container">
+        <h1>CAPTURE THE FLAG</h1>
+        <div class="subtitle">
+            Web • OSINT • Crypto • Forensics • Logic • Exploitation
+        </div>
+
+        <div class="levels-grid">
+
+            <div class="ctf-card" onclick="openLevel(1)">
+                <div class="difficulty easy">EASY</div>
+                <div class="level-number">LEVEL 01</div>
+                <div class="level-title">Hidden Signal</div>
+                <div class="level-desc">
+                    Something is hiding in plain sight. Inspect carefully.
+                </div>
+            </div>
+
+            <div class="ctf-card" onclick="openLevel(2)">
+                <div class="difficulty easy">EASY</div>
+                <div class="level-number">LEVEL 02</div>
+                <div class="level-title">Encoded Truth</div>
+                <div class="level-desc">
+                    The message isn’t encrypted… just misunderstood.
+                </div>
+            </div>
+
+            <div class="ctf-card" onclick="openLevel(3)">
+                <div class="difficulty medium">MEDIUM</div>
+                <div class="level-number">LEVEL 03</div>
+                <div class="level-title">Metadata Leak</div>
+                <div class="level-desc">
+                    Files always tell more than they should.
+                </div>
+            </div>
+
+            <div class="ctf-card" onclick="openLevel(4)">
+                <div class="difficulty medium">MEDIUM</div>
+                <div class="level-number">LEVEL 04</div>
+                <div class="level-title">Broken Logic</div>
+                <div class="level-desc">
+                    The system trusts you… maybe too much.
+                </div>
+            </div>
+
+            <div class="ctf-card locked">
+                <div class="difficulty hard">HARD</div>
+                <div class="level-number">LEVEL 05</div>
+                <div class="level-title">Deep Exploit</div>
+                <div class="level-desc">
+                    Only for those who think like attackers.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            ⚠ Educational CTF • Flags format: <strong>CTF{...}</strong>
+        </div>
+    </div>
+
+    <script>
+        function openLevel(num) {
+            window.location.href = "levels/level" + num + ".html";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CTF Level 4</title>
+
+    <style>
+        body {
+            background: linear-gradient(120deg, #120404, #000);
+            color: #ff4d4d;
+            font-family: Consolas, monospace;
+            padding: 60px;
+        }
+
+        .box {
+            max-width: 550px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #ff4d4d55;
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        input,
+        button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            background: #020b12;
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>LEVEL 4 – Broken Logic</h2>
+        <p>The system checks… but incorrectly.</p>
+
+        <input id="flag" placeholder="CTF{...}">
+        <button onclick="check()">SUBMIT</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        function check() {
+            const input = flag.value;
+
+            if (input.length > 10 && input.includes("logic")) {
+                if (input === "CTF{logic_is_flawed}") {
+                    msg.innerText = "✔ Logic broken. Flag accepted.";
+                } else {
+                    msg.innerText = "✘ Almost there.";
+                }
+            } else {
+                msg.innerText = "✘ Input rejected.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP Security Header Analyzer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #050b14, #000);
+            color: #00fff7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 650px;
+            padding: 35px;
+            border-radius: 18px;
+            background: rgba(5, 15, 30, 0.9);
+            box-shadow:
+                0 0 30px rgba(0, 255, 247, 0.35),
+                inset 0 0 25px rgba(0, 255, 247, 0.05);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px #00fff7;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.75;
+            margin-bottom: 25px;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            background: #020b12;
+            border: 1px solid #00fff7;
+            border-radius: 10px;
+            color: #00fff7;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 12px 18px;
+            background: #00fff7;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .results {
+            margin-top: 25px;
+        }
+
+        .card {
+            background: #071f37;
+            border: 1px solid #00fff740;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 14px;
+        }
+
+        .good {
+            color: #00ff9c;
+        }
+
+        .bad {
+            color: #ff4d4d;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🛡️ HEADER ANALYZER</h1>
+        <div class="subtitle">Check HTTP security headers of a website</div>
+
+        <div class="input-box">
+            <input id="url" placeholder="https://example.com">
+            <button onclick="scan()">SCAN</button>
+        </div>
+
+        <div class="results" id="results"></div>
+
+        <div class="footer">
+            ⚠ Uses public CORS proxy • Educational use only
+        </div>
+    </div>
+    <script>
+        const headersToCheck = [
+            "content-security-policy",
+            "x-frame-options",
+            "x-content-type-options",
+            "strict-transport-security",
+            "referrer-policy",
+            "permissions-policy"
+        ];
+
+        async function scan() {
+            const url = document.getElementById("url").value.trim();
+            const out = document.getElementById("results");
+
+            out.innerHTML = "<p style='opacity:0.6;'>🔍 Scanning headers...</p>";
+
+            if (!url.startsWith("http")) {
+                out.innerHTML = "<p class='bad'>❌ Please include http:// or https://</p>";
+                return;
+            }
+
+            try {
+                const res = await fetch(
+                    "https://corsproxy.io/?" + encodeURIComponent(url),
+                    { method: "GET" }
+                );
+
+
+                const data = await res.json();
+
+                if (!data || !data.headers) {
+                    throw new Error("No headers received");
+                }
+
+                out.innerHTML = "";
+
+                headersToCheck.forEach(h => {
+                    const value = data.headers[h];
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    if (value) {
+                        card.innerHTML = `
+                    <strong class="good">✔ ${h}</strong>
+                    <div style="margin-top:6px;font-size:13px;opacity:0.8;">
+                        ${value}
+                    </div>
+                `;
+                    } else {
+                        card.innerHTML = `
+                    <strong class="bad">✘ ${h}</strong>
+                    <div style="margin-top:6px;font-size:13px;opacity:0.7;">
+                        Missing or not set
+                    </div>
+                `;
+                    }
+
+                    out.appendChild(card);
+                });
+
+            } catch (err) {
+                out.innerHTML = "<p class='bad'>❌ Failed to fetch headers (proxy blocked)</p>";
+                console.error(err);
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
