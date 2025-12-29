@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Red Team - Level 2</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Consolas, monospace;
+            background: #060606;
+            color: #f2f2f2;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 25px;
+            font-size: 26px;
+            background: #0c0000;
+            border-bottom: 3px solid #900000;
+            text-shadow: 0 0 15px #ff0000;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .section {
+            background: #120000;
+            border: 3px solid #b30000;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 25px #ff0000a0;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .section h2 {
+            color: #ff2a2a;
+            text-shadow: 0 0 15px #ff0000;
+        }
+
+        .section ul {
+            margin-left: 10px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: block;
+            width: 300px;
+            margin: 30px auto;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            border: none;
+            font-size: 18px;
+            background: linear-gradient(90deg, #7a0000, #ff1a1a, #7a0000);
+            box-shadow: 0 0 25px #ff1a1a;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px #ff1a1a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>⚔️ Red Team — Level 2: OSINT & Enumeration</header>
+
+    <div class="container">
+
+        <div class="section">
+            <h2>🎯 Goal of Level 2</h2>
+            <p>
+                You now know what recon is… but knowledge alone won’t cut it.
+                Level 2 focuses on **OSINT** & **Basic Enumeration**:
+            </p>
+            <ul>
+                <li>Find exposed information about targets online</li>
+                <li>Discover systems and services they run</li>
+                <li>Collect intel without alerting defenders</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🕵️ OSINT (Open Source Intelligence)</h2>
+            <p>Huge results with zero touches on the target. Tools you should master:</p>
+            <ul>
+                <li><strong>Google Dorking</strong> (Find hidden files, logins, leaks)</li>
+                <li><strong>WHOIS</strong> (Domain ownership & DNS data)</li>
+                <li><strong>Shodan</strong> (Devices exposed to Internet)</li>
+                <li><strong>Social Media Profiling</strong></li>
+                <li><strong>HaveIBeenPwned</strong> (Password leaks)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔍 Enumeration — Stepping Beyond Passive</h2>
+            <p>Here we poke a little deeper 👇</p>
+            <ul>
+                <li><strong>Port Scanning</strong> → Nmap</li>
+                <li><strong>Service Enumeration</strong> (versions, banners)</li>
+                <li><strong>Directory discovery</strong> → gobuster, dirsearch</li>
+                <li><strong>SNMP / SMB / FTP probing</strong></li>
+            </ul>
+
+            <p style="margin-top:15px;">
+                Enumeration reveals:<br>
+                ✔ What software is running<br>
+                ✔ What versions<br>
+                ✔ What weaknesses to exploit next 😈
+            </p>
+        </div>
+
+        <div class="section" style="border-color:#00ff00; box-shadow:0 0 25px #00ff00;">
+            <h2 style="color:#00ff00;">📌 Level 2 Checkpoint</h2>
+            <p>Ready to continue training?</p>
+        </div>
+
+        <button class="btn" onclick="gotoExam()">🔥 Begin Level 2 Exam 🔥</button>
+
+    </div>
+
+    <script>
+        function gotoExam() {
+            window.location.href = "level2_exam.html"; // to be created next
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Correct Answers:
+Q1: B
+Q2: A
+Q3: A
+Q4: B
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 2 | Recon Exam</title>
+
+    <style>
+        :root {
+            --bg-dark: #05050a;
+            --neon-red: #ff1744;
+            --neon-blue: #00e5ff;
+            --neon-green: #39ff14;
+            --text-light: #e0e0e0;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --hud-border: 0 0 15px var(--neon-blue);
+        }
+
+        body {
+            background: var(--bg-dark);
+            font-family: Consolas, monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: var(--text-light);
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 20px;
+            text-transform: uppercase;
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+            animation: glitch 1s infinite;
+        }
+
+        .exam-container {
+            width: 85%;
+            margin: 25px auto;
+            background: var(--card-bg);
+            padding: 20px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            box-shadow: var(--hud-border);
+            backdrop-filter: blur(5px);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 3px solid var(--neon-red);
+            animation: pulse 3s infinite;
+        }
+
+        label {
+            display: block;
+            padding: 4px 0;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: var(--neon-green);
+            color: #000;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-1px, 1px);
+            }
+
+            40% {
+                transform: translate(1px, -1px);
+            }
+
+            60% {
+                transform: translate(-2px, 0);
+            }
+
+            80% {
+                transform: translate(1px, 2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                border-color: var(--neon-red);
+            }
+
+            50% {
+                border-color: var(--neon-blue);
+            }
+
+            100% {
+                border-color: var(--neon-red);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>LEVEL 2 —EXAM</h1>
+
+    <div class="exam-container">
+
+        <div class="question">
+            <p>1️⃣ What is Passive Recon?</p>
+            <label><input type="radio" name="q1" value="0"> Directly interacting with the target systems.</label>
+            <label><input type="radio" name="q1" value="1"> Gathering information without touching the target.</label>
+            <label><input type="radio" name="q1" value="0"> Scanning ports aggressively.</label>
+        </div>
+
+        <div class="question">
+            <p>2️⃣ Which of the following is a Passive Recon method?</p>
+            <label><input type="radio" name="q2" value="1"> Searching online databases like WHOIS.</label>
+            <label><input type="radio" name="q2" value="0"> Running Nmap scans.</label>
+            <label><input type="radio" name="q2" value="0"> Brute forcing login pages.</label>
+        </div>
+
+        <div class="question">
+            <p>3️⃣ What is the main advantage of Passive Recon?</p>
+            <label><input type="radio" name="q3" value="1"> It avoids detection.</label>
+            <label><input type="radio" name="q3" value="0"> It gains root access fast.</label>
+            <label><input type="radio" name="q3" value="0"> It attacks firewalls directly.</label>
+        </div>
+
+        <div class="question">
+            <p>4️⃣ Which site can be used to view DNS records?</p>
+            <label><input type="radio" name="q4" value="0"> Instagram</label>
+            <label><input type="radio" name="q4" value="1"> DNSdumpster</label>
+            <label><input type="radio" name="q4" value="0"> Fortnite Tracker</label>
+        </div>
+
+        <button onclick="checkExam()">Submit Answers ✔</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+        function checkExam() {
+            let score = 0;
+            for (let i = 1; i <= 4; i++) {
+                let answer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (answer) score += parseInt(answer.value);
+            }
+
+            const result = document.getElementById("result");
+
+            if (score === 4) {
+                result.style.color = "var(--neon-green)";
+                result.innerHTML = "🔥 PERFECT! LEVEL 3 UNLOCKED! 🔥";
+                setTimeout(() => {
+                    window.location.href = "level3.html"; // change when ready
+                }, 2000);
+            } else {
+                result.style.color = "var(--neon-red)";
+                result.innerHTML = "❌ Try again. You must score 4/4 to unlock!";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

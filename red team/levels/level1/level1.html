@@ -156,6 +156,64 @@ QUIZ_ANSWER      -> accepted answer keyword
             background: #222;
             color: #aaa;
         }
+
+        .gamer-box {
+            background: #1a0000;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 25px #ff0000b0;
+            padding: 25px;
+            border-radius: 14px;
+            margin-top: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 12px #ff000070;
+            }
+
+            50% {
+                box-shadow: 0 0 28px #ff0000e0;
+            }
+
+            100% {
+                box-shadow: 0 0 12px #ff000070;
+            }
+        }
+
+        .gamer-input {
+            border: 1px solid #ff2020;
+            box-shadow: 0 0 8px #ff000090;
+        }
+
+        .gamer-input:focus {
+            outline: none;
+            border-color: #ff3c00;
+            box-shadow: 0 0 15px #ff3c00;
+        }
+
+        .gamer-btn {
+            background: linear-gradient(90deg, #7a0000, #ff1a1a, #7a0000);
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        .gamer-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 30px #ff1a1a;
+        }
+
+        .exam-title.gamer-glow {
+            text-shadow: 0 0 15px #ff0000, 0 0 40px #ff1a1a;
+        }
+
+        .exam-result {
+            margin-top: 10px;
+            font-size: 18px;
+            text-shadow: 0 0 10px #00ff00;
+        }
     </style>
 </head>
 
@@ -181,15 +239,28 @@ QUIZ_ANSWER      -> accepted answer keyword
         </div>
 
         <div id="exam" class="content-box">
-            <h2>Final Exam</h2>
-            <p>Answer correctly to unlock Level 2.</p>
-            <input id="q1" placeholder="Passive vs Active recon">
-            <input id="q2" placeholder="Passive recon tool">
-            <input id="q3" placeholder="Why recon matters">
-            <input id="q4" placeholder="Active recon example">
-            <input id="q5" placeholder="First recon step">
-            <button onclick="gradeExam()">Submit</button>
-            <p id="exam-result"></p>
+            <h2 class="exam-title gamer-glow">⚔️ Final Boss Exam</h2>
+            <p class="exam-sub">Defeat this challenge to unlock Level 2!</p>
+
+            <div class="exam-box gamer-box">
+                <div class="question">🎯 What is the difference between Passive vs Active recon?</div>
+                <input id="q1" class="exam-input gamer-input" placeholder="Your answer...">
+
+                <div class="question">🕵️ Name one Passive Recon tool:</div>
+                <input id="q2" class="exam-input gamer-input" placeholder="Example: WHOIS">
+
+                <div class="question">📡 Why Reconnaissance matters?</div>
+                <input id="q3" class="exam-input gamer-input" placeholder="Your reason...">
+
+                <div class="question">💣 Give an example of Active Recon:</div>
+                <input id="q4" class="exam-input gamer-input" placeholder="Example: Nmap scan">
+
+                <div class="question">🚀 What is the first step in recon?</div>
+                <input id="q5" class="exam-input gamer-input" placeholder="Your step...">
+
+                <button class="exam-btn gamer-btn" onclick="gradeExam()">🔥 Submit Answers 🔥</button>
+                <p id="exam-result" class="exam-result"></p>
+            </div>
         </div>
 
     </div>
@@ -218,9 +289,6 @@ QUIZ_ANSWER      -> accepted answer keyword
         </div>
     </div>
     <script>
-        /* =========================
-           TAB SWITCHING
-        ========================== */
         function switchTab(tab) {
             document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
             document.querySelectorAll(".content-box").forEach(c => c.classList.remove("active"));
@@ -228,25 +296,16 @@ QUIZ_ANSWER      -> accepted answer keyword
             document.getElementById(tab).classList.add("active");
         }
 
-        /* =========================
-           VIDEO + QUIZ CONTROL
-        ========================== */
         const video = document.getElementById("trainingVideo");
         const quiz = document.getElementById("quiz");
         const overlay = document.getElementById("overlay");
 
-        let quizTriggered = false; // reached quiz point
-        let quizPassed = false;    // answered correctly
+        let quizTriggered = false;
+        let quizPassed = false;
 
-        // SEARCH CTRL+F: QUIZ_TIME
-        const pauseTime = 90; // seconds (quiz checkpoint)
+        const pauseTime = 90;
+        const rewindTime = 10;
 
-        // SEARCH CTRL+F: REWIND_TIME
-        const rewindTime = 10; // seconds forced back if quit
-
-        /* =========================
-           HARD WATCHER (UNSKIPPABLE)
-        ========================== */
         setInterval(() => {
             if (!quizPassed && video.currentTime >= pauseTime) {
                 quizTriggered = true;
@@ -257,22 +316,15 @@ QUIZ_ANSWER      -> accepted answer keyword
             }
         }, 200);
 
-        /* =========================
-           SNAP BACK IF USER SEEKS
-        ========================== */
         video.addEventListener("seeking", () => {
             if (!quizPassed && video.currentTime > pauseTime) {
                 video.currentTime = pauseTime;
             }
         });
 
-        /* =========================
-           QUIZ ACTIONS
-        ========================== */
         function submitQuiz() {
             const answer = document.getElementById("quiz-answer").value.toLowerCase();
 
-            // SEARCH CTRL+F: QUIZ_ANSWER
             if (answer.includes("passive")) {
                 quizPassed = true;
                 closeQuiz();
@@ -295,31 +347,38 @@ QUIZ_ANSWER      -> accepted answer keyword
             document.getElementById("quiz-answer").value = "";
         }
 
-        /* =========================
-           FINAL EXAM
-        ========================== */
         function gradeExam() {
             let correct = 0;
 
             if (q1.value.toLowerCase().includes("passive")) correct++;
-            if (q2.value.toLowerCase().includes("whois") || q2.value.toLowerCase().includes("google")) correct++;
-            if (q3.value.toLowerCase().includes("info")) correct++;
-            if (q4.value.toLowerCase().includes("scan")) correct++;
-            if (q5.value.toLowerCase().includes("target")) correct++;
-
-            const out = document.getElementById("exam-result");
+            if (q2.value.toLowerCase().includes("whois") || q2.value.toLowerCase().includes("osint")) correct++;
+            if (q3.value.toLowerCase().includes("information") || q3.value.toLowerCase().includes("intel")) correct++;
+            if (q4.value.toLowerCase().includes("nmap") || q4.value.toLowerCase().includes("scan")) correct++;
+            if (q5.value.toLowerCase().includes("recon")) correct++;
 
             if (correct >= 4) {
-                out.style.color = "#00ff00";
-                out.innerText = "✔ Level 2 unlocked!";
-                localStorage.setItem("level2_unlocked", "true");
+                document.getElementById("exam-result").innerText = "🔥 Passed! Proceed to Level 2!";
+                document.getElementById("exam-result").style.color = "#00ff00";
+                setTimeout(() => {
+                    window.location.href = "level2.html"; // redirect after success
+                }, 1500);
             } else {
-                out.style.color = "red";
-                out.innerText = "✘ Not enough correct answers.";
+                document.getElementById("exam-result").innerText = "❌ Failed — Review your knowledge!";
+                document.getElementById("exam-result").style.color = "#ff0000";
             }
         }
-    </script>
 
+        // ====================================================
+        // 🔥 EXAM ANSWERS (CTRL+F: EXAM_ANSWERS)
+        // ====================================================
+        // Q1: Passive = no interaction | Active = direct probing
+        // Q2: Example passive tool → WHOIS, OSINT Framework
+        // Q3: Recon matters = gathers information for an attack
+        // Q4: Example active recon → Nmap scan
+        // Q5: First step = Reconnaissance
+        // ====================================================
+
+    </script>
 
 </body>
 

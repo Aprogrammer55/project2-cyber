@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Coming Soon</title>
+    <style>
+        :root {
+            --bg-dark: #05050a;
+            --neon-red: #ff1744;
+            --neon-blue: #00e5ff;
+            --text-light: #e0e0e0;
+        }
+
+        body {
+            background: var(--bg-dark);
+            font-family: Consolas, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--neon-blue);
+            font-size: 3rem;
+            text-shadow: 0 0 12px var(--neon-blue);
+            animation: glitch 1s infinite;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+
+            25% {
+                transform: translate(-1px, 1px);
+            }
+
+            50% {
+                transform: translate(1px, -1px);
+            }
+
+            75% {
+                transform: translate(-2px, 0);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            border-radius: 6px;
+            background: var(--neon-red);
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 20px var(--neon-red);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>⚔️ LEVEL 3</h1>
+        <p>More Recon Skills Coming Soon, Operator...</p>
+        <a href="level2_exam.html">◀ Return</a>
+    </div>
+
+</body>
+
+</html>
